@@ -12,7 +12,8 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class FeedBackService implements FeedBackMethods {
+public class
+FeedBackService implements FeedBackMethods {
     public final FeedBackRepository service;
 
     @Override
