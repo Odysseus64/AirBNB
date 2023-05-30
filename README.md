@@ -11,6 +11,6 @@ Open your terminal or command line and enter the following:
     git clone https://github.com/Odysseus64/airbnb.git
 
 It will download to the folder where you are.
+To run the project, ente then into the console
 
-    To run the project, enter ./download/airbnb.jar into the console
-
+    ./download/airbnb.jar 
