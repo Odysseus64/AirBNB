@@ -28,15 +28,15 @@ public class ImageService implements ImageMethods {
     @Override
     public void update(Long id, Image image) {
         try{
-            Image ored = service.findById(id).orElseThrow();
-            ored.setPreviewImage(image.isPreviewImage());
-            ored.setName(image.getName());
-            ored.setBytes(image.getBytes());
-            ored.setContentType(image.getContentType());
-            ored.setOriginalFileName(image.getOriginalFileName());
-            ored.setSize(image.getSize());
-            service.save(ored);
-            log.info("Image updated: {}", ored);
+            Image red = service.findById(id).orElseThrow();
+            red.setPreviewImage(image.isPreviewImage());
+            red.setName(image.getName());
+            red.setBytes(image.getBytes());
+            red.setContentType(image.getContentType());
+            red.setOriginalFileName(image.getOriginalFileName());
+            red.setSize(image.getSize());
+            service.save(red);
+            log.info("Image updated: {}", red);
             log.info("Image finding with id: {}", id);
         }catch (Exception exception){
             log.error("Error while updating image: {}", exception.getMessage());

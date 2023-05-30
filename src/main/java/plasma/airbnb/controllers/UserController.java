@@ -20,17 +20,17 @@ public class UserController {
     public String getById(@PathVariable("id") Long id, Model model){
         User user = service.findById(id);
         model.addAttribute("get", user);
-        return ""; //Where?
+        return "";
     }
     @GetMapping("/user/save")
     public String createUser(@ModelAttribute("user") User user){
         service.save(user);
-        return ""; //Where?
+        return "";
     }
     @GetMapping("/user/delete/{id}")
     public String deleteById(@PathVariable("id") Long id){
         service.deleteById(id);
-        return ""; //Where?
+        return "";
     }
     @GetMapping("/user/profile")
     public String profileUser(Model model){
@@ -38,9 +38,3 @@ public class UserController {
         return "/user/user-profile";
     }
 }
-/*
-        UPDATE
-        DELETE
-        SHOW
-        SAVE
-*/
