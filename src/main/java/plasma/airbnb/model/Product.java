@@ -24,6 +24,12 @@ public class Product {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "town_province")
+    private String townProvince;
+
     @Column(name = "max_of_guests")
     private int maxGuests;
 
@@ -36,11 +42,7 @@ public class Product {
     @Column(name = "region")
     private Region region;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "town_province")
-    private String townProvince;
+    private Long previewImageId;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
@@ -48,5 +50,4 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<FeedBack> feedBacks = new ArrayList<>();
 
-    private Long previewImageId;
 }

@@ -14,8 +14,12 @@
             <h2>AirBNB</h2>
         </li>
         <li>
-            <input type="search" placeholder="Search">
-            <input type="checkbox" placeholder="Искать по близости">
+            <label>
+                <input type="search" placeholder="Search">
+            </label>
+            <label>
+                <input type="checkbox" placeholder="Искать по близости">
+            </label>
         </li>
         <li>
             <a>
@@ -23,7 +27,7 @@
             </a>
         </li>
         <li>
-            <a th:href="">
+            <a th:href="@{/user/login}">
                 <button>JOIN US</button>
             </a>
         </li>

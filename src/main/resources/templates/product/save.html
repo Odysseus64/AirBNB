@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
-$END$
+    <form>
+        <input type="text" name="title">
+        <input type="number" name="maxGuests">
+        <input type="number" name="price">
+        <input type="text" name="description">
+        <input type="text" name="townProvince">
+        <input type="radio" name="type" th:value="save.APARTMENT">
+        <input type="radio" name="type">
+        <!--   === 4 Images ===    -->
+        <input type="file" name="images">
+        <input type="file" name="images">
+        <input type="file" name="images">
+        <input type="file" name="images">
+    </form>
 </body>
 </html>

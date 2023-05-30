@@ -29,9 +29,8 @@ public class UserService implements UserMethods {
 
     @Override
     public void update(Long id, User user) {
-        Optional<User> existingUser = repository.findById(id);
-        if (existingUser.isPresent()) {
-            User uss = existingUser.get();
+        try {
+            User uss = repository.findById(id).orElseThrow();
             uss.setEmail(user.getEmail());
             uss.setPassword(user.getPassword());
             uss.setName(user.getName());
@@ -41,7 +40,7 @@ public class UserService implements UserMethods {
             uss.setImage(user.getImage());
             repository.save(uss);
             log.info("User updated: {}", uss);
-        } else {
+        } catch (Exception exception) {
             throw new RuntimeException("User not found with id: " + id);
         }
     }
