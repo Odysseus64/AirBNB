@@ -8,7 +8,6 @@ import plasma.airbnb.reposiroty.UserRepository;
 import plasma.airbnb.reposiroty.methods.UserMethods;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -40,7 +39,9 @@ public class UserService implements UserMethods {
             uss.setImage(user.getImage());
             repository.save(uss);
             log.info("User updated: {}", uss);
+            log.info("User finding with id: {}", id);
         } catch (Exception exception) {
+            log.error("Log: Error while updating user: {}", exception.getMessage());
             throw new RuntimeException("User not found with id: " + id);
         }
     }

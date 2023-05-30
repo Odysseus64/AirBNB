@@ -8,7 +8,6 @@ import plasma.airbnb.reposiroty.ProductRepository;
 import plasma.airbnb.reposiroty.methods.ProductMethods;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -29,9 +28,8 @@ public class ProductService implements ProductMethods {
 
     @Override
     public void update(Long id, Product product) {
-        Optional<Product> existingProduct = repository.findById(id);
-        if (existingProduct.isPresent()) {
-            Product pro = existingProduct.get();
+         try{
+            Product pro = repository.findById(id).orElseThrow();
             pro.setTitle(product.getTitle());
             pro.setDescription(product.getDescription());
             pro.setPrice(product.getPrice());
@@ -43,8 +41,10 @@ public class ProductService implements ProductMethods {
             pro.setFeedBacks(product.getFeedBacks());
             repository.save(pro);
             log.info("Product updated: {}", pro);
-        } else {
-            throw new RuntimeException("Product not found with id: " + id);
+            log.info("Product finding with id: {}", id);
+        }catch (Exception exception){
+             log.error("Log: Error while updating product: {}", exception.getMessage());
+            throw new RuntimeException("Product not found with id: " + exception);
         }
     }
 

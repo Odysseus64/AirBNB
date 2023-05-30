@@ -1,7 +1,7 @@
 package plasma.airbnb.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import plasma.airbnb.model.FeedBack;
 import plasma.airbnb.reposiroty.FeedBackRepository;
@@ -10,32 +10,63 @@ import plasma.airbnb.reposiroty.methods.FeedBackMethods;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class FeedBackService implements FeedBackMethods {
     public final FeedBackRepository service;
 
     @Override
     public void deleteById(Long id) {
-
+        try {
+            log.info("Deleting feedback with id: {}", id);
+            service.deleteById(id);
+        } catch (Exception exception) {
+            log.error("Error while deleting feedback: {}", exception.getMessage());
+            throw new RuntimeException("Failed to delete feedback" + exception);
+        }
     }
 
     @Override
     public void update(Long id, FeedBack feedBack) {
-
+        try {
+            FeedBack feedBack1 = service.findById(id).orElseThrow();
+            feedBack1.setImages(feedBack.getImages());
+            feedBack1.setProduct(feedBack.getProduct());
+            feedBack1.setFeedBack(feedBack1.getFeedBack());
+            service.save(feedBack1);
+            log.info("FeedBack updated: {}", feedBack1);
+            log.info("Feedback finding with id: {}", id);
+        }catch (Exception exception){
+            log.error("Error while updating feedback: {}", exception.getMessage());
+            throw new RuntimeException("FeedBack not found with id: {}" + exception);
+        }
     }
 
     @Override
     public FeedBack findById(Long id) {
-        return null;
+        try {
+            log.info("Finding FeedBack with id: {}", id);
+            return service.findById(id).orElseThrow(() ->
+                    new RuntimeException("FeedBack not found with id: {}" + id));
+        } catch (Exception exception) {
+            log.error("Error while finding feedback: {}", exception.getMessage());
+            throw new RuntimeException("Failed to find feedback", exception);
+        }
     }
 
     @Override
     public FeedBack save(FeedBack feedBack) {
-        return null;
+        try {
+            log.info("Saving feedback: {}", feedBack);
+            return service.save(feedBack);
+        }catch (Exception exception){
+            log.error("Error while saving feedback: {}", exception.getMessage());
+            throw new RuntimeException("Failed to save feedback", exception);
+        }
     }
 
     @Override
     public List<FeedBack> findAll() {
-        return null;
+        return service.findAll();
     }
 }
