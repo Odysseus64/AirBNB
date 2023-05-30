@@ -1,0 +1,38 @@
+@GetMapping("/teacher/main")
+    public String main(Model model) {
+        List<Teacher> teachers = service.findAll();
+        model.addAttribute("main", teachers);
+        return "/teacher/view-teacher";
+    }
+
+    @GetMapping("/teacher/save")
+    public String save(Model model) {
+        model.addAttribute("save", new Teacher());
+        return "/teacher/create-teacher";
+    }
+
+    @PostMapping("/teacher/save")
+    public String saveProduct(Teacher teacher) {
+        service.save(teacher);
+        return "redirect:/teacher/main";
+    }
+
+    @PostMapping("/teacher/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        service.deleteById(id);
+        return "redirect:/teacher/main";
+    }
+
+    @GetMapping("/teacher/edit/{id}")
+    public String showEdit(@PathVariable("id") Long id, Model model) {
+        Teacher teacher = service.findById(id);
+        model.addAttribute("get", teacher);
+        return "/teacher/update-teacher";
+    }
+
+    @PostMapping("/teacher/edit/{id}")
+    public String edit(@PathVariable("id") Long id,
+                       @ModelAttribute("teach") Teacher teach) {
+        service.update(id, teach);
+        return "redirect:/teacher/main";
+    }

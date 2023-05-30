@@ -8,19 +8,34 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <input type="text" name="title">
-        <input type="number" name="maxGuests">
-        <input type="number" name="price">
-        <input type="text" name="description">
-        <input type="text" name="townProvince">
-        <input type="radio" name="type" th:value="save.APARTMENT">
-        <input type="radio" name="type">
+    <form th:action="@{'/product/save'}">
+        <label>
+            <input type="number" name="maxGuests">
+        </label>
+        <label>
+            <input type="number" name="price">
+        </label>
+        <label>
+            <input type="radio" name="region">
+        </label>
+        <label>
+            <input type="radio" name="type" th:value="${save.type}">
+        </label>
+        <label>
+            <input type="text" name="description">
+        </label>
+        <label>
+            <input type="text" name="title">
+        </label>
+        <label>
+            <input type="text" name="townProvince">
+        </label>
         <!--   === 4 Images ===    -->
-        <input type="file" name="images">
-        <input type="file" name="images">
-        <input type="file" name="images">
-        <input type="file" name="images">
+<!--        <input type="file" name="images">-->
+<!--        <input type="file" name="images">-->
+<!--        <input type="file" name="images">-->
+<!--        <input type="file" name="images">-->
+        <button type="submit"> SAVE</button>
     </form>
 </body>
 </html>

@@ -14,16 +14,15 @@ public class UserController {
     @GetMapping("/home")
     public String home(Model model){
         model.addAttribute("home", service.findAll());
-        return "/home/home";
+        return "";
     }
     @GetMapping("/user/getById/{id}")
     public String getById(@PathVariable("id") Long id, Model model){
-        User user = service.findById(id);
-        model.addAttribute("get", user);
+        model.addAttribute("get", service.findById(id));
         return "";
     }
     @GetMapping("/user/save")
-    public String createUser(@ModelAttribute("user") User user){
+    public String createUser(User user){
         service.save(user);
         return "";
     }
