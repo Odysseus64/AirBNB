@@ -1,5 +1,5 @@
 package plasma.airbnb.enums;
 
 public enum Role {
-    ADMIN, USER, GUEST
+    ADMIN, USER, TEACHER, GUEST
 }
