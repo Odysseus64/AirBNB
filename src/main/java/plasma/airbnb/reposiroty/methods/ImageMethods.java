@@ -5,9 +5,9 @@ import plasma.airbnb.model.Image;
 import java.util.List;
 
 public interface ImageMethods {
-    void deleteById(Long id);
-    void update(Long id, Image image);
-    Image findById(Long id);
-    Image save(Image image);
+    Image updateImage(Long imageId, byte[] newImageBytes);
+    Image saveImage(byte[] imageBytes);
+    byte[] getImageBytes(Long imageId);
     List<Image> findAll();
+    void deleteById(Long id);
 }
