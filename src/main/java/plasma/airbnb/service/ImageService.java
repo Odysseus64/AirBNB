@@ -61,6 +61,7 @@ public class ImageService implements ImageMethods {
                 image.setBytes(newImageBytes);
                 return service.save(image);
             } else {
+                log.error("Error while updating image: {}", optionalImage);
                 throw new RuntimeException("Image not found with id: " + imageId);
             }
         } catch (Exception e) {
