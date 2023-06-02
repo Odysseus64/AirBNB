@@ -1,14 +1,14 @@
 package plasma.airbnb.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import plasma.airbnb.enums.Role;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = " _user")
+@Table(name = "user")
 @Data
 @NoArgsConstructor
 public class User {
