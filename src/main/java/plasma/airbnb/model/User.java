@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import plasma.airbnb.enums.Role;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = " _user")
@@ -28,12 +29,11 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "image_id")
     private Image image;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> product;
     private LocalDateTime dateOfCreate;
 
-    public User(String name,
-                String email,
-                String password,
-                Role role) {
+    public User(String name) {
         this.name = name;
         this.email = email;
         this.password = password;
