@@ -50,6 +50,6 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<FeedBack> feedBacks = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private User user;
+//    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+//    private User user;
 }
