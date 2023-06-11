@@ -1,6 +1,6 @@
 package plasma.airbnb.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import plasma.airbnb.enums.Role;
