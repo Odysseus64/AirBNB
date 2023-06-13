@@ -3,7 +3,6 @@ package plasma.airbnb.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import plasma.airbnb.dto.request.FeedbackRequest;
 import plasma.airbnb.model.FeedBack;
 import plasma.airbnb.service.FeedBackService;
 
