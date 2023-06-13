@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import plasma.airbnb.dto.request.FeedbackRequest;
-import plasma.airbnb.dto.response.FeedbackResponse;
+import plasma.airbnb.model.FeedBack;
 import plasma.airbnb.service.FeedBackService;
 
 import java.util.List;
@@ -17,8 +17,8 @@ public class FeedBackController {
     private final FeedBackService feedBackService;
 
     @PostMapping("/saveFeedback")
-    public String saveFeedBack(@RequestBody FeedbackRequest feedbackRequest) {
-        feedBackService.saveFeedback(feedbackRequest);
+    public String saveFeedBack(@RequestBody FeedBack feedBack) {
+        feedBackService.saveFeedback(feedBack);
         return "Comments successfully save";
     }
     @DeleteMapping("deleteFeedback")
@@ -27,16 +27,16 @@ public class FeedBackController {
         return "Comments successfully delete";
     }
     @PutMapping("/updateFeedback/{id}")
-    public String updateFeedBack(@PathVariable Long id,@RequestBody FeedbackRequest feedbackRequest){
-        feedBackService.update(id,feedbackRequest);
+    public String updateFeedBack(@PathVariable Long id,@RequestBody FeedBack feedBack){
+        feedBackService.update(id,feedBack);
         return "Comments successfully update";
     }
     @GetMapping("/getFeedback{id}")
-    public FeedbackResponse findById(@PathVariable Long id){
+    public FeedBack findById(@PathVariable("id") Long id){
         return feedBackService.findById(id);
     }
     @GetMapping("/getAllFeedback")
-    public List<FeedbackResponse> getAll(){
+    public List<FeedBack> getAll(){
         return feedBackService.findAll();
     }
 }

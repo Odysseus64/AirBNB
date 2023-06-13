@@ -24,7 +24,6 @@ public class Home {
     }
     @GetMapping("/home/sortByName")
     public String sortByName(){
-
         return "";
     }
 }
