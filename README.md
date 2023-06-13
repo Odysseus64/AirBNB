@@ -1,6 +1,6 @@
 ## AirBNB
 - Original project. Real estate website
-- Our team consists of 5 people: Kokodae, Neon, Bakyt, Kurmanbek, Bekbolsun
+- Our team consists of 7 people: Kokodae, Neon, Bakyt, Kurmanbek, Bekbolsun, Bema, Bektur
 - Maven is used as the project build.
 - We use a Docker file as a container.
 - The project is written in Java using the Spring Framework.
