@@ -1,6 +1,8 @@
+## AirBNB
+
 ![Diagramm](https://github.com/Odysseus64/airbnb/blob/master/AirBNB.png)
 
-## AirBNB
+## INFO
 - Original project. Real estate website
 - Our team consists of 5 people: Kokodae, Neon, Bakyt, Kurmanbek, Bekbolsun
 - Maven is used as the project build.
