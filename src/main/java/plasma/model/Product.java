@@ -1,11 +1,13 @@
-package plasma.airbnb.model;
+package plasma.model;
+
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import plasma.airbnb.enums.Region;
-import plasma.airbnb.enums.Type;
+import plasma.enums.Region;
+import plasma.enums.Type;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;

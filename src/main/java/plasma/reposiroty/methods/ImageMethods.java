@@ -1,6 +1,7 @@
-package plasma.airbnb.reposiroty.methods;
+package plasma.reposiroty.methods;
 
-import plasma.airbnb.model.Image;
+
+import plasma.model.Image;
 
 import java.util.List;
 

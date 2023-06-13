@@ -3,9 +3,9 @@ package plasma.airbnb.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import plasma.airbnb.model.User;
-import plasma.airbnb.reposiroty.UserRepository;
-import plasma.airbnb.reposiroty.methods.UserMethods;
+import plasma.model.User;
+import plasma.reposiroty.UserRepository;
+import plasma.reposiroty.methods.UserMethods;
 
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class UserService implements UserMethods {
             throw new RuntimeException("Failed to delete user", exception);
         }
     }
+
 
     @Override
     public void update(Long id, User user) {

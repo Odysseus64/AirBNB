@@ -1,4 +1,4 @@
-package plasma.airbnb.controllers;
+package plasma.controllers;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

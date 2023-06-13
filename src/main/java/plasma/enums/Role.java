@@ -1,4 +1,4 @@
-package plasma.airbnb.enums;
+package plasma.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 

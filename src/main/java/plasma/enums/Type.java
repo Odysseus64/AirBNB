@@ -1,4 +1,4 @@
-package plasma.airbnb.enums;
+package plasma.enums;
 
 public enum Type {
     APARTMENT, HOUSE

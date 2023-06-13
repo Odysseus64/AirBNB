@@ -3,9 +3,10 @@ package plasma.airbnb.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import plasma.airbnb.model.Product;
-import plasma.airbnb.reposiroty.ProductRepository;
-import plasma.airbnb.reposiroty.methods.ProductMethods;
+
+import plasma.model.Product;
+import plasma.reposiroty.ProductRepository;
+import plasma.reposiroty.methods.ProductMethods;
 
 import java.util.List;
 
@@ -26,9 +27,8 @@ public class ProductService implements ProductMethods {
         }
     }
 
-    @Override
     public void update(Long id, Product product) {
-         try{
+        try{
             Product pro = repository.findById(id).orElseThrow();
             pro.setTitle(product.getTitle());
             pro.setDescription(product.getDescription());
@@ -43,10 +43,12 @@ public class ProductService implements ProductMethods {
             log.info("Product updated: {}", pro);
             log.info("Product finding with id: {}", id);
         }catch (Exception exception){
-             log.error("Log: Error while updating product: {}", exception.getMessage());
+            log.error("Log: Error while updating product: {}", exception.getMessage());
             throw new RuntimeException("Product not found with id: " + exception);
         }
     }
+
+
 
     @Override
     public Product findById(Long id) {

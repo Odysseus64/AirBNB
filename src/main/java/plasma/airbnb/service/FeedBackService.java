@@ -3,17 +3,16 @@ package plasma.airbnb.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import plasma.airbnb.model.FeedBack;
-import plasma.airbnb.reposiroty.FeedBackRepository;
-import plasma.airbnb.reposiroty.methods.FeedBackMethods;
+import plasma.model.FeedBack;
+import plasma.reposiroty.FeedBackRepository;
+import plasma.reposiroty.methods.FeedBackMethods;
 
 import java.util.List;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class
-FeedBackService implements FeedBackMethods {
+public class FeedBackService implements FeedBackMethods {
     public final FeedBackRepository service;
 
     @Override
@@ -37,7 +36,7 @@ FeedBackService implements FeedBackMethods {
             service.save(feedBack1);
             log.info("FeedBack updated: {}", feedBack1);
             log.info("Feedback finding with id: {}", id);
-        }catch (Exception exception){
+        } catch (Exception exception) {
             log.error("Error while updating feedback: {}", exception.getMessage());
             throw new RuntimeException("FeedBack not found with id: {}" + exception);
         }
@@ -60,7 +59,7 @@ FeedBackService implements FeedBackMethods {
         try {
             log.info("Saving feedback: {}", feedBack);
             return service.save(feedBack);
-        }catch (Exception exception){
+        } catch (Exception exception) {
             log.error("Error while saving feedback: {}", exception.getMessage());
             throw new RuntimeException("Failed to save feedback", exception);
         }

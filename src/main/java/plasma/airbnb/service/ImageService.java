@@ -3,9 +3,9 @@ package plasma.airbnb.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import plasma.airbnb.model.Image;
-import plasma.airbnb.reposiroty.ImageRepository;
-import plasma.airbnb.reposiroty.methods.ImageMethods;
+import plasma.model.Image;
+import plasma.reposiroty.ImageSRepository;
+import plasma.reposiroty.methods.ImageMethods;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 public class ImageService implements ImageMethods {
-    private final ImageRepository service;
+    private final ImageSRepository service;
 
     @Override
     public void deleteById(Long id) {
@@ -30,8 +30,8 @@ public class ImageService implements ImageMethods {
     @Override
     public byte[] getImageBytes(Long imageId) {
         try {
-            Image image = service.findById(imageId).orElseThrow(() ->
-                    new RuntimeException("Image not found with id: " + imageId));
+            Image image = service.findById(imageId).orElseThrow();
+//            ->throw new RuntimeException("Image not found with id: " + imageId);
             return image.getBytes();
         } catch (Exception e) {
             log.error("Error while retrieving image: {}", e.getMessage());
@@ -68,6 +68,7 @@ public class ImageService implements ImageMethods {
             throw new RuntimeException("Failed to update image", e);
         }
     }
+
     @Override
     public List<Image> findAll() {
         return service.findAll();
