@@ -17,21 +17,14 @@ public class Home {
         service.findAll();
         return "Get All product";
     }
-    @GetMapping("/hoem/getById{id}")
+    @GetMapping("/home/getById{id}")
     public String findById(@RequestParam("id") Long id){
         service.findById(id);
         return "Id found " + id;
     }
+    @GetMapping("/home/sortByName")
+    public String sortByName(){
 
-//    @PostMapping("/home/save")
-//    public String save(@ModelAttribute("product") Product product){
-//        service.save(product);
-//        return "Saved!";
-//    }
-
-//    @DeleteMapping("/home/delete/{id}")
-//    public String deleteById(@RequestParam("id") Long id){
-//        service.deleteById(id);
-//        return "Product deleted";
-//    }
+        return "";
+    }
 }
