@@ -20,16 +20,61 @@ public class Home {
         service.findAll();
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/home/getById{id}")
-    public ResponseEntity<Product> findById(@PathVariable("id") Long id){
-        service.findById(id);
+    @GetMapping("/home/getById/{id}")
+    public ResponseEntity<Product> findById(@PathVariable("id") Long id) {
+        Product product = service.findById(id);
+        if (product == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+    @GetMapping("/batken")
+    public ResponseEntity<Product> batken(Product product){
+
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/home/sortByName")
-    public ResponseEntity<Product> sortByName(String name, Product product){
-        // find by title Bektur sir Это ваша работа
+    @GetMapping("/osh")
+    public ResponseEntity<Product> osh(Product product){
+
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    // Не удалось затестить проект, отсуствует сваггер
-    // в ветке kokodae есть конфлект нужно исправить как моэно быстрее
+    @GetMapping("/jalalabad")
+    public ResponseEntity<Product> jalalabad(Product product){
+
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/bishkek")
+    public ResponseEntity<Product> bishkek(Product product){
+
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/naryn")
+    public ResponseEntity<Product> naryn(Product product){
+
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/yssyk-kol")
+    public ResponseEntity<Product> yssykkol(Product product){
+
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/talas")
+    public ResponseEntity<Product> talas(Product product){
+
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/chyi")
+    public ResponseEntity<Product> chyi(Product product){
+
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
