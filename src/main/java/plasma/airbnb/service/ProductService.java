@@ -52,8 +52,7 @@ public class ProductService implements ProductMethods {
     public Product findById(Long id) {
         try {
             log.info("Finding product with id: {}", id);
-            return repository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+            return repository.findById(id).orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
         } catch (Exception exception) {
             log.error("Error while finding product: {}", exception.getMessage());
             throw new RuntimeException("Failed to find product", exception);

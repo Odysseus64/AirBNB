@@ -1,10 +1,10 @@
 package plasma.airbnb.model;
 
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import plasma.airbnb.enums.Role;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity

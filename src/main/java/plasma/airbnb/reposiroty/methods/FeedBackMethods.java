@@ -1,6 +1,7 @@
 package plasma.airbnb.reposiroty.methods;
 
 import plasma.airbnb.model.FeedBack;
+
 import java.util.List;
 public interface FeedBackMethods {
     FeedBack saveFeedback(FeedBack feedBack);
