@@ -10,15 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.service.ProductService;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/api/v3")
 public class Home {
     private final ProductService service;
     @GetMapping("/home/")
-    public ResponseEntity<Product> houme(){
-        service.findAll();
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<List<Product>> houme(){
+        List<Product> products = service.findAll();
+        return ResponseEntity.ok().body(products);
     }
     @GetMapping("/home/getById/{id}")
     public ResponseEntity<Product> findById(@PathVariable("id") Long id) {
@@ -26,55 +28,59 @@ public class Home {
         if (product == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body(product);
         }
     }
+
+
+    // ============================================
     @GetMapping("/batken")
     public ResponseEntity<Product> batken(Product product){
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body(product);
     }
     @GetMapping("/osh")
     public ResponseEntity<Product> osh(Product product){
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body(product);
     }
     @GetMapping("/jalalabad")
     public ResponseEntity<Product> jalalabad(Product product){
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body(product);
     }
     @GetMapping("/bishkek")
     public ResponseEntity<Product> bishkek(Product product){
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body(product);
     }
     @GetMapping("/naryn")
     public ResponseEntity<Product> naryn(Product product){
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body(product);
     }
     @GetMapping("/yssyk-kol")
     public ResponseEntity<Product> yssykkol(Product product){
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body(product);
     }
     @GetMapping("/talas")
     public ResponseEntity<Product> talas(Product product){
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body(product);
     }
     @GetMapping("/chyi")
     public ResponseEntity<Product> chyi(Product product){
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body(product);
     }
+    //============================================
 }

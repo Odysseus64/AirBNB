@@ -44,8 +44,12 @@ public class FeedBackController {
 
     // Приблизительно так:
     @DeleteMapping("/deleteFeedback/{id}")
-    public ResponseEntity<FeedBack> deleteFeedBack(@PathVariable("id") Long id){
-        feedBackService.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<FeedBack> deleteFeedBack(@PathVariable("id") Long id) {
+        if (feedBackService.findById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            feedBackService.deleteById(id);// logining
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 }
