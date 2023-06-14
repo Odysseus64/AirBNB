@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import plasma.airbnb.enums.Region;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.service.ProductService;
 
@@ -32,12 +33,11 @@ public class Home {
         }
     }
 
-
-    // ============================================
+    // Есть идея сделать Регион в формате String для удобства и для упрошения разработки
     @GetMapping("/batken")
     public ResponseEntity<Product> batken(Product product){
-
-
+        if(Region.BATKEN != product.getRegion()){
+        }
         return ResponseEntity.ok().body(product);
     }
     @GetMapping("/osh")
@@ -82,5 +82,4 @@ public class Home {
 
         return ResponseEntity.ok().body(product);
     }
-    //============================================
 }
