@@ -55,8 +55,8 @@ public class FeedBackService implements FeedBackMethods {
     @Override
     public FeedBack findById(Long id) {
         try {
-            FeedBack feedBack = feedBackRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Feedback not found with id "+id));
+            FeedBack feedBack = feedBackRepository.findById(id).orElseThrow(()
+                    -> new RuntimeException("Feedback not found with id "+id));
             log.info("Finding FeedBack with id: {}", id);
             return feedBack;
         } catch (Exception exception) {
