@@ -4,7 +4,7 @@
 
 ## INFO
 - Original project. Real estate website
-- Our team consists of 7 people: Kokodae, Neon, Bakyt, Kurmanbek, Bekbolsun, Bema, Bektur
+- Our team consists of 7 people: Kokodae, Neon, Bakyt, Kurmanbek, Bekbolsun, Begimai, Bektur
 - Maven is used as the project build.
 - We use a Docker file as a container.
 - The project is written in Java using the Spring Framework.
