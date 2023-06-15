@@ -34,9 +34,10 @@ public class Home {
     }
 
     // There is an idea to make the Region in String format for convenience and to simplify development
-    @GetMapping("/batken")
+    @GetMapping("/Batken")
     public ResponseEntity<Product> batken(Product product){
         if(Region.BATKEN != product.getRegion()){
+            
         }
         return ResponseEntity.ok().body(product);
     }
@@ -45,7 +46,7 @@ public class Home {
         return ResponseEntity.ok().body(product);
     }
 
-    @GetMapping("/jalalabad")
+    @GetMapping("/jalal-abad")
     public ResponseEntity<Product> jalalabad(Product product){
         return ResponseEntity.ok().body(product);
     }
