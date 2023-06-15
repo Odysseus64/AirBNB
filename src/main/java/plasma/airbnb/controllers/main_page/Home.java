@@ -61,7 +61,7 @@ public class Home {
         return ResponseEntity.ok().body(product);
     }
 
-    @GetMapping("/yssyk-kol")
+    @GetMapping("/issyk-kol")
     public ResponseEntity<Product> yssykkol(Product product){
         return ResponseEntity.ok().body(product);
     }
