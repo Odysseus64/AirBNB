@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import plasma.airbnb.model.FeedBack;
 import plasma.airbnb.service.FeedBackService;
 
-import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -16,31 +16,36 @@ public class FeedBackController {
 
     private final FeedBackService feedBackService;
 
-/*
     @PostMapping("/saveFeedback")
-    public String saveFeedBack(@RequestBody FeedBack feedBack) {
-        feedBackService.saveFeedback(feedBack);
-        return "Comments successfully save";
-    } // Метод должен отправлять HTTP запрос
+    public ResponseEntity saveFeedBack(@RequestBody FeedBack feedBack) {
+        if (feedBack.getClass() == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            feedBackService.saveFeedback(feedBack);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
 
     @GetMapping("/getAllFeedback")
-    public List<FeedBack> getAll(){
-        return feedBackService.findAll();
+    public ResponseEntity<FeedBack> getAll() {
+        feedBackService.findAll();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/getFeedback{id}")
-    public FeedBack findById(@PathVariable("id") Long id){
-        return feedBackService.findById(id);
+    public ResponseEntity findById(@PathVariable("id") Long id) {
+        feedBackService.findById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // Исправите или удалите и напишите код по лучше
     @PutMapping("/updateFeedback/{id}")
-    public String updateFeedBack(@PathVariable("id") Long id, @RequestBody FeedBack feedBack){
-        feedBackService.update(id,feedBack);
-        return "Comments successfully update";
+    public ResponseEntity updateFeedBack(@PathVariable("id") Long id, @RequestBody FeedBack feedBack) {
+        feedBackService.update(id, feedBack);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
     // Качество. Вот чего я добиваюсь в разработке любого ПО
-*/
 
     // Приблизительно так:
     @DeleteMapping("/deleteFeedback/{id}")
