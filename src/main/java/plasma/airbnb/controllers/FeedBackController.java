@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import plasma.airbnb.model.FeedBack;
 import plasma.airbnb.service.FeedBackService;
 
-
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/feedbacks")
@@ -18,12 +16,8 @@ public class FeedBackController {
 
     @PostMapping("/saveFeedback")
     public ResponseEntity saveFeedBack(@RequestBody FeedBack feedBack) {
-        if (feedBack.getClass() == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            feedBackService.saveFeedback(feedBack);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
+        feedBackService.saveFeedback(feedBack);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/getAllFeedback")
@@ -38,22 +32,19 @@ public class FeedBackController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    // Исправите или удалите и напишите код по лучше
     @PutMapping("/updateFeedback/{id}")
     public ResponseEntity updateFeedBack(@PathVariable("id") Long id, @RequestBody FeedBack feedBack) {
         feedBackService.update(id, feedBack);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
-    // Качество. Вот чего я добиваюсь в разработке любого ПО
 
-    // Приблизительно так:
     @DeleteMapping("/deleteFeedback/{id}")
     public ResponseEntity<FeedBack> deleteFeedBack(@PathVariable("id") Long id) {
         if (feedBackService.findById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            feedBackService.deleteById(id);// logining
+            feedBackService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
