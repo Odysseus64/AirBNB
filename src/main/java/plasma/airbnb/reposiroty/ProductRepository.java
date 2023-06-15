@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import plasma.airbnb.enums.Region;
+import plasma.airbnb.enums.Type;
 import plasma.airbnb.model.Product;
 
 import java.util.List;
@@ -14,14 +15,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select s from Product s where s.title = :title ")
     List<Product> findByTitle(@Param("title") String title);
 
-    @Query("select s from Product s where s.price = :price")
-    List<Product> findByPrice(@Param("price") String price);
+    @Query("select s from Product  s where s.price = :priceo")
+    List<Product> findByPrice(@Param("price") int price);
 
     @Query("select s from Product s where s.region = :region")
-    List<Product> findByRegion(@Param("region") String region);
+    List<Product> findByRegion(@Param("region") Region region);
 
     @Query("select s from Product s where s.type = :type")
-    List<Product> findByType(@Param("type") String type);
+    List<Product> findByType(@Param("type") Type type);
 
     @Query("select s from Product s order by s.title desc ")
     List<Product> ratingTitle();

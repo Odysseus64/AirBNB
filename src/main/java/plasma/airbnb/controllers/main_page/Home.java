@@ -40,46 +40,39 @@ public class Home {
         }
         return ResponseEntity.ok().body(product);
     }
+    // Дописать сорт по или упростить код одним методом
     @GetMapping("/osh")
     public ResponseEntity<Product> osh(Product product){
-
-
         return ResponseEntity.ok().body(product);
     }
+
     @GetMapping("/jalalabad")
     public ResponseEntity<Product> jalalabad(Product product){
-
-
         return ResponseEntity.ok().body(product);
     }
+
     @GetMapping("/bishkek")
     public ResponseEntity<Product> bishkek(Product product){
-
-
         return ResponseEntity.ok().body(product);
     }
+
     @GetMapping("/naryn")
     public ResponseEntity<Product> naryn(Product product){
-
-
         return ResponseEntity.ok().body(product);
     }
+
     @GetMapping("/yssyk-kol")
     public ResponseEntity<Product> yssykkol(Product product){
-
-
         return ResponseEntity.ok().body(product);
     }
+
     @GetMapping("/talas")
     public ResponseEntity<Product> talas(Product product){
-
-
         return ResponseEntity.ok().body(product);
     }
+
     @GetMapping("/chyi")
     public ResponseEntity<Product> chyi(Product product){
-
-
         return ResponseEntity.ok().body(product);
     }
 }

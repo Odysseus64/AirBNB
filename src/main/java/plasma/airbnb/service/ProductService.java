@@ -3,7 +3,6 @@ package plasma.airbnb.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import plasma.airbnb.enums.Region;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.reposiroty.ProductRepository;
 import plasma.airbnb.reposiroty.methods.ProductMethods;
