@@ -40,6 +40,10 @@ public class User {
         this.role = role;
     }
 
+    public User(String email) {
+        this.email = email;
+    }
+
     @PrePersist
     private void init() {
         dateOfCreate = LocalDateTime.now();
