@@ -32,12 +32,16 @@ public class SecurityConfig {
         return provider;
     }
 
+    // Access levels will be issued from here
     @Bean
     SecurityFilterChain authorization(HttpSecurity http) throws Exception {
         http
-                .cors().and().csrf().disable()
-                .authorizeRequests( auth -> auth
-                        .antMatchers( "/swagger", "/swagger-ui/index.html" ).permitAll()
+                .cors()
+                .and()
+                .csrf()
+                .disable()
+                .authorizeRequests(
+                        auth -> auth.antMatchers( "/swagger", "/swagger-ui/index.html" ).permitAll()
                         .anyRequest()
                         .permitAll()
                 )
@@ -51,5 +55,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

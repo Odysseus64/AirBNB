@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import plasma.airbnb.enums.Region;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.service.ProductService;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/v3")
+@RestController("/v3/api-docs")
 public class Home {
     private final ProductService service;
     @GetMapping("/home/")
@@ -33,14 +33,13 @@ public class Home {
         }
     }
 
-    // Есть идея сделать Регион в формате String для удобства и для упрошения разработки
+    // There is an idea to make the Region in String format for convenience and to simplify development
     @GetMapping("/batken")
     public ResponseEntity<Product> batken(Product product){
         if(Region.BATKEN != product.getRegion()){
         }
         return ResponseEntity.ok().body(product);
     }
-    // Дописать сорт по или упростить код одним методом
     @GetMapping("/osh")
     public ResponseEntity<Product> osh(Product product){
         return ResponseEntity.ok().body(product);

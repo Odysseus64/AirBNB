@@ -26,26 +26,20 @@ public class AuthService {
         user.setRole( Role.USER);
         user.setPassword(passwordEncoder.encode(userRegisterRequest.getPassword()));
 
-        if (repository.existsByEmail(userRegisterRequest.getEmail()))
-            throw new RuntimeException("The email " + userRegisterRequest.getEmail() + " is already in use!");
-
+        if (repository.existsByEmail(userRegisterRequest.getEmail())) throw new RuntimeException("The email " + userRegisterRequest.getEmail() + " is already in use!");
         User savedUser = repository.save(user);
         String token = jwtUtils.generateToken(userRegisterRequest.getEmail());
 
         new JWTResponse(
                 savedUser.getEmail(),
                 token,
-                "GO",
+                "OK",
                 savedUser.getRole()
         );
 }
     public JWTResponse authenticate(LoginRequest loginRequest) {
-        User user = repository.findByEmail(loginRequest.getEmail()).orElseThrow(() ->
-                new RuntimeException("User with email: " + loginRequest.getEmail() + " not found!"));
-
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid password");
-        }
+        User user = repository.findByEmail(loginRequest.getEmail()).orElseThrow(() -> new RuntimeException("User with email: " + loginRequest.getEmail() + " not found!"));
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) throw new RuntimeException("Invalid password");
         String token = jwtUtils.generateToken(user.getEmail());
         return new JWTResponse(
                 user.getEmail(),

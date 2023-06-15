@@ -13,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SortedService {
     public final ProductRepository repository;
+
     // SORT BY NAME
     public List<Product> sortByName(String title) {
         if (title != null) {
@@ -28,6 +29,7 @@ public class SortedService {
         }
         return repository.findAll();
     }
+
     // SORT BY REGION (BISHKEK, OSH, CHYI, TALAS, YSSYK-KYL, BATKEN, NARYN)
     public List<Product> sortByRegion(Region region){
         if (region != null){
@@ -35,14 +37,13 @@ public class SortedService {
         }
         return repository.findAll();
     }
+
     // SORT BY TYPE (APARTMENT & HOUSE)
     public List<Product> sortByType(Type type){
-        if (type == null) {
+        if (type != null) {
             return repository.findByType(type);
         }
         return repository.findAll();
     }
-
-
 }
 

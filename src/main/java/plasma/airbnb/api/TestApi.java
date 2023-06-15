@@ -10,12 +10,12 @@ public class TestApi {
     @GetMapping("user")
     @PreAuthorize("hasAuthority('USER')")
     public String getUser() {
-        return "Hello, I'm User";
+        return "it's User";
     }
 
     @GetMapping("admin")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String getAdmin() {
-        return "Hello, I'm Admin";
+        return "it's Admin";
     }
 }

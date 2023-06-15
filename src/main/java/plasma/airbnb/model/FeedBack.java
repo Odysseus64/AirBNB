@@ -26,6 +26,13 @@ public class FeedBack {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Product product;
 
+     /*
+        Этого в планах не было если подумать придется делать так чтобы комент придналежал
+        пользователю
+     */
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    private User user;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "feedBack")
     private List<Image> images = new ArrayList<>();
 }

@@ -21,7 +21,7 @@ public class JwtUtils {
         return JWT.create()
                 .withSubject( "User details" )
                 .withClaim( "username", username )
-                .withIssuedAt( new Date() ).withIssuer( "elmirzens" )
+                .withIssuedAt( new Date() ).withIssuer( "airbnb" )
                 .withExpiresAt( expirationDate )
                 .sign( Algorithm.HMAC256( secret ) );
     }
@@ -29,7 +29,7 @@ public class JwtUtils {
     public String validateTokenAndRetrieveClaim(String token) {
         JWTVerifier jwtVerifier = JWT.require( Algorithm.HMAC256( secret ) )
                 .withSubject( "User details" )
-                .withIssuer( "elmirzens" )
+                .withIssuer( "airbnb" )
                 .build();
         DecodedJWT verify = jwtVerifier.verify( token );
         return verify.getClaim( "username" ).asString();

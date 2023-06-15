@@ -10,7 +10,6 @@ import plasma.airbnb.reposiroty.UserRepository;
 
 import java.util.Optional;
 
-
 @Service
 @RequiredArgsConstructor
 public class AuthUserDetailsService implements UserDetailsService {
@@ -19,10 +18,7 @@ public class AuthUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByEmail(email);
-        if (user.isEmpty()) {
-            throw new RuntimeException("User with " + email + " not found!");
-        }
+        if (user.isEmpty()) throw new RuntimeException("User with " + email + " not found!");
         return new AuthUserDetails(user.get());
     }
-
 }

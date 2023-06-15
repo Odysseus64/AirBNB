@@ -17,17 +17,16 @@ public class AuthApi {
 
     private final AuthService authService;
 
-    @PostMapping("register")
+    @PostMapping("/register")
     @PermitAll
     public String registrationPerson(@RequestBody UserRegisterRequest userRegisterRequest) {
         authService.registerUser( userRegisterRequest );
-        return "Siuuu";
+        return "User successfully registered!";
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     @PermitAll
     public JWTResponse performLogin(@RequestBody LoginRequest loginResponse) {
         return authService.authenticate( loginResponse );
     }
-
 }

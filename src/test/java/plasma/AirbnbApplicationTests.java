@@ -9,5 +9,4 @@ class AirbnbApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

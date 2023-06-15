@@ -6,6 +6,8 @@ import plasma.airbnb.enums.Role;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = " _user")
@@ -23,12 +25,19 @@ public class User {
     private String description;
     private String phoneNumber;
     private boolean active;
+
     @Enumerated(EnumType.STRING)
     private Role role;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "image_id")
     private Image image;
+
     private LocalDateTime dateOfCreate;
+
+    // It will be necessary to indicate in the diagram that I connected (User to FeedBack)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    private List<FeedBack> feedBacks = new ArrayList<>();
 
     public User(String name,
                 String email,
