@@ -35,4 +35,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("select s from Product s order by s.type desc ")
     List<Product> ratingType();
+    // нужно удалить ненужые методы
 }
