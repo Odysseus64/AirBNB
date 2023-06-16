@@ -66,5 +66,11 @@ public class SortedService {
         }
         return repository.findAll();
     }
+    public List<Product> search(String title, String city, Region region){
+        if (title != null && city != null && region != null){
+            repository.search(title, city, region);
+        }
+        return repository.findAll();
+    }
 }
 
