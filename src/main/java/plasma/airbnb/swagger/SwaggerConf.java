@@ -30,5 +30,4 @@ public class SwaggerConf {
                 .type( SecurityScheme.Type.HTTP )
                 .scheme( "Bearer" );
     }
-
 }
