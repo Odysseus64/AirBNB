@@ -1,7 +1,8 @@
 package plasma.airbnb.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import plasma.airbnb.enums.Role;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = " _user")
 @Data
+@Slf4j
 @NoArgsConstructor
 public class User {
     @Id
@@ -25,6 +27,9 @@ public class User {
     private String description;
     private String phoneNumber;
     private boolean active;
+
+    @ElementCollection
+    private List<String> favorites;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -53,8 +58,24 @@ public class User {
         this.email = email;
     }
 
+    public void saveToFavorites(String item) {
+        favorites.add(item);
+        log.info(item + " добавлен в избранное пользователя " +name + ".");
+    }
+
+    public void deleteToFavorites(String item){
+        if(favorites.contains(item)){
+            favorites.remove(item);
+            log.info(item + " удален из избранного пользователя " +name + ".");
+        }else {
+            log.info("не найден в избранном пользователя " + name + ".");
+        }
+
+    }
+
     @PrePersist
     private void init() {
         dateOfCreate = LocalDateTime.now();
     }
+
 }

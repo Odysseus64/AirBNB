@@ -31,9 +31,30 @@ public class SortedService {
     }
 
     // SORT BY REGION (BISHKEK, OSH, CHYI, TALAS, YSSYK-KYL, BATKEN, NARYN)
-    public List<Product> sortByRegion(Region region){
+
+    public List<Product> sortByRatingRegion(Region region) {
         if (region != null){
-            repository.findByRegion(region);
+            repository.ratingRegion();
+        }
+        return repository.findAll();
+    }
+
+    public List<Product> sortByRegion(Region region1) {
+        if (region1 != null) {
+            repository.findByRegion(region1);
+        }
+        return repository.findAll();
+    }
+
+    public List<Product> sortByRatingRegion(Type type) {
+        if (type == null) {
+            repository.ratingType();
+        }
+        return repository.findAll();
+    }
+    public List<Product> sortByRatingType(Type type1) {
+        if (type1 != null) {
+            repository.ratingType();
         }
         return repository.findAll();
     }
