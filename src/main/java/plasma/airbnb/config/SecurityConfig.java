@@ -36,18 +36,16 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain authorization(HttpSecurity http) throws Exception {
         http
-                .cors()
-                .and()
-                .csrf()
-                .disable()
-                .authorizeRequests(
-                        auth -> auth.antMatchers( "/swagger", "/swagger-ui/index.html" ).permitAll()
+                .cors().and().csrf().disable()
+                .authorizeRequests(auth -> auth.antMatchers(
+                                "/swagger", "/swagger-ui/index.html" ).permitAll()
                         .anyRequest()
                         .permitAll()
                 )
                 .sessionManagement()
                 .sessionCreationPolicy( SessionCreationPolicy.STATELESS );
-        http.addFilterBefore( tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class );
+        http
+                .addFilterBefore( tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class );
         return http.build();
     }
 
