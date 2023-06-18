@@ -40,14 +40,14 @@ public class SecurityConfig {
                 .and()
                 .csrf()
                 .disable()
-                .authorizeRequests(
-                        auth -> auth.antMatchers( "/swagger", "/swagger-ui/index.html" ).permitAll()
+                .authorizeRequests(auth -> auth.antMatchers("/swagger", "/swagger-ui/index.html" ).permitAll()
                         .anyRequest()
                         .permitAll()
                 )
                 .sessionManagement()
                 .sessionCreationPolicy( SessionCreationPolicy.STATELESS );
-        http.addFilterBefore( tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class );
+        http
+                .addFilterBefore( tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class );
         return http.build();
     }
 
