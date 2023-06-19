@@ -22,7 +22,6 @@ import java.util.List;
 public class Home {
     private final ProductService service;
     private final SortedService sortedService;
-
     private final ProductRepository productRepository;
 
     @GetMapping("/home/")
