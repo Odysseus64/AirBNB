@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import plasma.airbnb.enums.Region;
 import plasma.airbnb.model.Product;
+import plasma.airbnb.reposiroty.ProductRepository;
 import plasma.airbnb.service.ProductService;
 import plasma.airbnb.service.SortedService;
 
@@ -21,6 +22,8 @@ import java.util.List;
 public class Home {
     private final ProductService service;
     private final SortedService sortedService;
+
+    private final ProductRepository productRepository;
 
     @GetMapping("/home/")
     public ResponseEntity<List<Product>> houme() {
@@ -83,8 +86,18 @@ public class Home {
     }
 
     @GetMapping("/search")
-    public List<Product> searchProduct(@RequestParam("title") String title, @RequestParam("city") String city,
-                                       @RequestParam("region") Region region) {
-        return sortedService.search(title, city, region);
+    public List<Product> searchProduct(
+            @RequestParam(value = "title", required = false) String title,
+            @RequestParam(value = "region", required = false) Region region,
+            @RequestParam(value = "city", required = false) String city) {
+        if (title != null && region != null) {
+            return productRepository.searchByTitle(title);
+        } else if (region != null) {
+            return productRepository.searchByRegion(region);
+        } else if (city != null) {
+            return productRepository.searchByCity(city);
+        } else {
+            return productRepository.findAll();
+        }
     }
 }

@@ -2,6 +2,8 @@ package plasma.airbnb.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import plasma.airbnb.enums.Region;
 import plasma.airbnb.enums.Type;
 import plasma.airbnb.model.Product;
@@ -73,4 +75,3 @@ public class SortedService {
         return repository.findAll();
     }
 }
-
