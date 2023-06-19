@@ -40,10 +40,11 @@ public class SecurityConfig {
                 .and()
                 .csrf()
                 .disable()
-                .authorizeRequests(auth -> auth.antMatchers("/swagger", "/swagger-ui/index.html" ).permitAll()
+                .authorizeRequests(auth -> auth
+                        .antMatchers("/swagger", "/swagger-ui/index.html" ).permitAll()
+//                        .antMatchers("/")
                         .anyRequest()
-                        .permitAll()
-                )
+                        .permitAll())
                 .sessionManagement()
                 .sessionCreationPolicy( SessionCreationPolicy.STATELESS );
         http
