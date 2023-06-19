@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .disable()
                 .authorizeRequests(auth -> auth
                         .antMatchers("/swagger", "/swagger-ui/index.html" ).permitAll()
-//                        .antMatchers("/")
+                        .antMatchers("/**").permitAll()
                         .anyRequest()
                         .permitAll())
                 .sessionManagement()
