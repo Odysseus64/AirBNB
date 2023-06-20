@@ -31,11 +31,10 @@ public class Home {
     @GetMapping("/home/getById/{id}")
     public ResponseEntity<Product> findById(@PathVariable("id") Long id) {
         Product product = service.findById(id);
-        if (product == null) {
+        if (product == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
+        else
             return ResponseEntity.ok().body(product);
-        }
     }
 
     // There is an idea to make the Region in String format for convenience and to simplify development
