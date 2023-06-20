@@ -32,7 +32,6 @@ public class SecurityConfig {
         return provider;
     }
 
-    // Access levels will be issued from here
     @Bean
     SecurityFilterChain authorization(HttpSecurity http) throws Exception {
         http
@@ -41,14 +40,13 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeRequests(auth -> auth
-                        .antMatchers("/swagger", "/swagger-ui/index.html" ).permitAll()
-                        .antMatchers("/**").permitAll()
+                        .antMatchers("/swagger", "/swagger-ui/index.html", "/**").hasRole("ADMIN")
                         .anyRequest()
                         .permitAll())
                 .sessionManagement()
                 .sessionCreationPolicy( SessionCreationPolicy.STATELESS );
         http
-                .addFilterBefore( tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class );
+                .addFilterBefore(tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
