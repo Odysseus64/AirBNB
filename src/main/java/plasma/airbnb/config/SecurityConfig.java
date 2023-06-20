@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import plasma.airbnb.config.jwt.TokenVerifierFilter;
+import plasma.airbnb.enums.Role;
 import plasma.airbnb.reposiroty.UserRepository;
 
 @EnableWebSecurity
@@ -40,7 +41,11 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeRequests(auth -> auth
-                        .antMatchers("/swagger", "/swagger-ui/index.html", "/**").hasRole("ADMIN")
+                        .antMatchers("/swagger", "/swagger-ui/index.html", "/**").permitAll() // Разрешаем только админу
+                        .antMatchers(
+                                "/api/product/save",
+                                "/api/product/edit/**",
+                                "/api/product/delete/**").hasRole("USER")
                         .anyRequest()
                         .permitAll())
                 .sessionManagement()
