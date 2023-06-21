@@ -3,6 +3,7 @@ package plasma.airbnb.controllers.main_page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,9 +41,6 @@ public class Home {
     // There is an idea to make the Region in String format for convenience and to simplify development
     @GetMapping("/Batken")
     public ResponseEntity<Product> batken(Product product) {
-        if (Region.BATKEN != product.getRegion()) {
-
-        }
         return ResponseEntity.ok().body(product);
     }
 
@@ -79,11 +77,5 @@ public class Home {
     @GetMapping("/chyi")
     public ResponseEntity<Product> chyi(Product product) {
         return ResponseEntity.ok().body(product);
-    }
-
-    @GetMapping("/search")
-    public List<Product> searchProduct(@RequestParam("title") String title, @RequestParam("city") String city,
-                                       @RequestParam("region") Region region) {
-        return sortedService.search(title, city, region);
     }
 }
