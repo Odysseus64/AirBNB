@@ -20,13 +20,12 @@ import plasma.airbnb.reposiroty.UserRepository;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
-
     private final TokenVerifierFilter tokenVerifierFilter;
 
     @Bean
     AuthenticationProvider authenticationProvider(UserRepository userRepository) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService( (email) -> (UserDetails) userRepository.findByEmail( email ).orElseThrow( () ->
+        provider.setUserDetailsService((email) -> (UserDetails) userRepository.findByEmail( email ).orElseThrow(() ->
                 new RuntimeException( "User with email: " + email + " not found!" ) ) );
         provider.setPasswordEncoder( passwordEncoder() );
         return provider;
@@ -40,13 +39,16 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeRequests(auth -> auth
-                        .antMatchers("/swagger", "/swagger-ui/index.html", "/**").hasRole("ADMIN")
+                        .antMatchers("/swagger", "/swagger-ui/index.html", "/**").permitAll() // Разрешаем только админу
+                        .antMatchers(
+                                "/api/product/save",
+                                "/api/product/edit/**",
+                                "/api/product/delete/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest()
                         .permitAll())
                 .sessionManagement()
                 .sessionCreationPolicy( SessionCreationPolicy.STATELESS );
-        http
-                .addFilterBefore(tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
