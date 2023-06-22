@@ -50,4 +50,19 @@ public class FeedBackController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+    @PostMapping("/{id}/like")
+    public FeedBack likeFeedback(@PathVariable("id") Long id) {
+        return feedBackService.likeFeedBack(id);
+    }
+
+    @PostMapping("/{id}/dislike")
+    public FeedBack dislikeFeedback(@PathVariable("id") Long id) {
+        return feedBackService.dislikeFeedBack(id);
+    }
+
+    @GetMapping("/{id}/average-rating")
+    public double getAverageRating(@PathVariable("id") Long id) {
+        FeedBack feedBack = feedBackService.findById(id);
+        return feedBackService.calculateAverageRating(feedBack);
+    }
 }

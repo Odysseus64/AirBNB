@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -49,4 +50,5 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<FeedBack> feedBacks = new ArrayList<>();
+
 }
