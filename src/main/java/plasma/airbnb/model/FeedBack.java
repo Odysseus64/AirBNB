@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+
 public class FeedBack {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +23,9 @@ public class FeedBack {
 
     @Column(name = "feed_back")
     private String feedBack;
+    private int like;
+    private int dislike;
+    private int rating;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Product product;
@@ -35,4 +39,8 @@ public class FeedBack {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "feedBack")
     private List<Image> images = new ArrayList<>();
+
+
 }
+
+

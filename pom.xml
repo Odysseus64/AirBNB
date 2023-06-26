@@ -26,69 +26,71 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>7.0.1.Final</version>
+			<version>8.0.0.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
-			<version>4.2.1</version>
+			<version>4.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
+            <version>3.0.4</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.5.3</version>
+			<version>3.0.4</version>
 		</dependency>
 
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-			<version>2.5.3</version>
+			<version>3.0.4</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.6.1</version>
+			<version>3.1.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
+            <version>3.0.4</version>
+            <scope>runtime</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.3.1</version>
+			<version>42.5.4</version>
 			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.20</version>
+			<version>1.18.26</version>
 			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.5.3</version>
+			<version>3.1.0</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
-			<version>5.5.2</version>
+			<version>6.0.2</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -96,6 +98,21 @@
 			<groupId>io.swagger.core.v3</groupId>
 			<artifactId>swagger-annotations</artifactId>
 			<version>2.2.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.android.play</groupId>
+			<artifactId>review</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+        <dependency>
+            <groupId>io.continual</groupId>
+            <artifactId>cpModel</artifactId>
+            <version>0.2.47</version>
+        </dependency>
+		<dependency>
+			<groupId>com.onpositive.aml</groupId>
+			<artifactId>org.aml.apimodel</artifactId>
+			<version>0.11</version>
 		</dependency>
 
 	</dependencies>
@@ -116,4 +133,11 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>gmaven</id>
+			<name>Google Maven</name>
+			<url>https://maven.google.com/</url>
+		</repository>
+	</repositories>
 </project>
