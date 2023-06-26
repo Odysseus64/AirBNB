@@ -3,11 +3,9 @@ package plasma.airbnb.controllers.main_page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import plasma.airbnb.enums.Region;
 import plasma.airbnb.model.Product;
@@ -38,44 +36,51 @@ public class Home {
             return ResponseEntity.ok().body(product);
     }
 
-    // There is an idea to make the Region in String format for convenience and to simplify development
-    @GetMapping("/Batken")
-    public ResponseEntity<Product> batken(Product product) {
-        return ResponseEntity.ok().body(product);
+    @GetMapping("/batken")
+    public ResponseEntity<String> batken() {
+        sortedService.regions(Region.BATKEN);
+        return ResponseEntity.ok().body("okey  working");
     }
 
     @GetMapping("/osh")
-    public ResponseEntity<Product> osh(Product product) {
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<String> osh() {
+        sortedService.regions(Region.OSH);
+        return ResponseEntity.ok().body("Wery ok");
     }
 
     @GetMapping("/jalal-abad")
-    public ResponseEntity<Product> jalalabad(Product product) {
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<String> jalalabad() {
+        sortedService.regions(Region.JALALABAD);
+        return ResponseEntity.ok().body("Workung");
     }
 
     @GetMapping("/bishkek")
-    public ResponseEntity<Product> bishkek(Product product) {
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<String> bishkek() {
+        sortedService.regions(Region.BISHKEK);
+        return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/naryn")
-    public ResponseEntity<Product> naryn(Product product) {
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<String> naryn() {
+        sortedService.regions(Region.NARYN);
+        return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/issyk-kol")
-    public ResponseEntity<Product> yssykkol(Product product) {
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<String> yssykkol() {
+        sortedService.regions(Region.ISSYKKUL);
+        return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/talas")
-    public ResponseEntity<Product> talas(Product product) {
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<String> talas() {
+        sortedService.regions(Region.TALAS);
+        return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/chyi")
-    public ResponseEntity<Product> chyi(Product product) {
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<String> chyi() {
+        sortedService.regions(Region.CHUI);
+        return ResponseEntity.ok().body("Working!");
     }
 }
