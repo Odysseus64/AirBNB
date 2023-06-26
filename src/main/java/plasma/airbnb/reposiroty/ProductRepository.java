@@ -40,4 +40,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> search(@RequestParam("name") String title,
                          @RequestParam("city") String city,
                          @RequestParam("region") Region region);
+    List<Region> region(@RequestParam("region") Region region);
 }
