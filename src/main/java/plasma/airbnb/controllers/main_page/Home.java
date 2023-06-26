@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import plasma.airbnb.enums.Region;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.service.ProductService;
-import plasma.airbnb.service.SortedService;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ import java.util.List;
 @RestController("/v3/api-docs")
 public class Home {
     private final ProductService service;
-    private final SortedService sortedService;
+    private final SortedService sort;
 
     @GetMapping("/home/")
     public ResponseEntity<List<Product>> houme() {
