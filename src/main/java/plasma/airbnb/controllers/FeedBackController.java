@@ -2,13 +2,10 @@ package plasma.airbnb.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import plasma.airbnb.model.FeedBack;
 import plasma.airbnb.service.FeedBackService;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController("api/v1/feedback")
@@ -16,29 +13,28 @@ public class FeedBackController {
 
     private final FeedBackService feedBackService;
 
-    @PostMapping("/save/feedback")
+    @PostMapping("/save/FeedBack")
     public ResponseEntity<FeedBack> saveFeedBack(@RequestBody FeedBack feedBack) {
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(feedBackService.saveFeedback(feedBack));
+        feedBackService.saveFeedback(feedBack);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/get/all/feedback")
-    public ResponseEntity<List<FeedBack>> getAll() {
+    @GetMapping("/get/all/FeedBack")
+    public ResponseEntity<FeedBack> getAll() {
         feedBackService.findAll();
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(feedBackService.findAll());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/get/feedback/{id}")
+    @GetMapping("/get/FeedBack/{id}")
     public ResponseEntity<FeedBack> findById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(feedBackService.findById(id));
+        feedBackService.findById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/update/feedback/{id}")
-    public ResponseEntity updateFeedBack(@PathVariable("id") Long id, @RequestBody FeedBack feedBack) {
+    @PutMapping("/updateFeedback/{id}")
+    public ResponseEntity<FeedBack> updateFeedBack(@PathVariable("id") Long id, @RequestBody FeedBack feedBack) {
         feedBackService.update(id, feedBack);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/FeedBack/{id}")
@@ -49,20 +45,5 @@ public class FeedBackController {
             feedBackService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-    }
-    @PostMapping("/{id}/like")
-    public FeedBack likeFeedback(@PathVariable("id") Long id) {
-        return feedBackService.likeFeedBack(id);
-    }
-
-    @PostMapping("/{id}/dislike")
-    public FeedBack dislikeFeedback(@PathVariable("id") Long id) {
-        return feedBackService.dislikeFeedBack(id);
-    }
-
-    @GetMapping("/{id}/average-rating")
-    public double getAverageRating(@PathVariable("id") Long id) {
-        FeedBack feedBack = feedBackService.findById(id);
-        return feedBackService.calculateAverageRating(feedBack);
     }
 }

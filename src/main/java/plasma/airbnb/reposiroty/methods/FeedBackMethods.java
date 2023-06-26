@@ -8,8 +8,5 @@ public interface FeedBackMethods {
     void deleteById(Long id);
     void update(Long id, FeedBack feedback);
     FeedBack findById(Long id);
-    FeedBack likeFeedBack(Long id);
-    FeedBack dislikeFeedBack(Long id);
-     double calculateAverageRating(FeedBack feedback);
     List<FeedBack> findAll();
 }
