@@ -7,7 +7,6 @@ import plasma.airbnb.model.FeedBack;
 import plasma.airbnb.reposiroty.FeedBackRepository;
 import plasma.airbnb.reposiroty.methods.FeedBackMethods;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -34,7 +33,7 @@ public class FeedBackService implements FeedBackMethods {
             feedBackRepository.deleteById(id);
         } catch (Exception exception) {
             log.error("Error while deleting feedback: {}", exception.getMessage());
-            throw new RuntimeException("Failed to delete feedback" + exception);
+                throw new RuntimeException("Failed to delete feedback" + exception);
         }
     }
 
@@ -53,47 +52,13 @@ public class FeedBackService implements FeedBackMethods {
             throw new RuntimeException("FeedBack not found with id: {}" + exception);
         }
     }
-
     @Override
     public FeedBack findById(Long id) {
         try {
-            return feedBackRepository.findById(id).orElseThrow(() -> new RuntimeException("Finding FeedBack with id: " + id));
+            return feedBackRepository.findById(id).orElseThrow(()-> new RuntimeException("Finding FeedBack with id: " + id));
         } catch (Exception exception) {
             log.error("Error while finding feedback: {}", exception.getMessage());
             throw new RuntimeException("Failed to find feedback", exception);
-        }
-    }
-
-    @Override
-    public FeedBack likeFeedBack(Long id) {
-        FeedBack feedback = feedBackRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found FeedBack"));
-        feedback.setLike(feedback.getLike() + 1);
-        return feedBackRepository.save(feedback);
-    }
-
-    @Override
-    public FeedBack dislikeFeedBack(Long id) {
-        FeedBack feedback = feedBackRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found FeedBack"));
-        feedback.setDislike(feedback.getDislike() + 1);
-        return feedBackRepository.save(feedback);
-    }
-
-    @Override
-    public double calculateAverageRating(FeedBack feedback) {
-        List<Integer> ratings = Collections.singletonList(feedback.getRating()); // Получить список оценок (0-5) из объекта обратной связи
-
-        int sum = 0;
-        int count = ratings.size();
-
-        for (int rating : ratings) {
-            sum += rating;
-        }
-
-        if (count > 0) {
-            double averageRating = (double) sum / count;
-            return averageRating;
-        } else {
-            return 0.0; // Если нет оценок, вернуть 0.0
         }
     }
 

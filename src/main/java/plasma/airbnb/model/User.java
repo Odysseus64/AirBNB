@@ -1,6 +1,7 @@
 package plasma.airbnb.model;
 
 import lombok.*;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import plasma.airbnb.enums.Role;
 
@@ -76,4 +77,5 @@ public class User {
     private void init() {
         dateOfCreate = LocalDateTime.now();
     }
+
 }
