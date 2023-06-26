@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import plasma.airbnb.enums.Region;
 import plasma.airbnb.model.Product;
@@ -81,6 +82,12 @@ public class Home {
     @GetMapping("/chyi")
     public ResponseEntity<String> chyi() {
         sortedService.regions(Region.CHUI);
+        return ResponseEntity.ok().body("Working!");
+    }
+    @GetMapping("/search")
+    public ResponseEntity<String> search(@RequestParam("title")String title,
+                                         @RequestParam("city") String city, @RequestParam("region") Region region){
+        sortedService.search(title, city, region);
         return ResponseEntity.ok().body("Working!");
     }
 }
