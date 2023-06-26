@@ -38,9 +38,16 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>2.5.3</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,12 +58,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.6.6</version>
+			<version>2.6.1</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+			<version>2.7.0</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -94,6 +102,24 @@
 			<version>2.2.8</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.google.android.play</groupId>
+			<artifactId>review</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.continual</groupId>
+			<artifactId>cpModel</artifactId>
+			<version>0.2.47</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.onpositive.aml</groupId>
+			<artifactId>org.aml.apimodel</artifactId>
+			<version>0.11</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -112,4 +138,11 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>google-maven</id>
+			<name>Google Maven</name>
+			<url>https://maven.google.com/</url>
+		</repository>
+	</repositories>
 </project>
