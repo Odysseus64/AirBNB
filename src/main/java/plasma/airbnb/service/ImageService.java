@@ -1,5 +1,7 @@
 package plasma.airbnb.service;
 
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,8 @@ import plasma.airbnb.model.Image;
 import plasma.airbnb.reposiroty.ImageRepository;
 import plasma.airbnb.reposiroty.methods.ImageMethods;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +18,9 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 public class ImageService implements ImageMethods {
-    private final ImageRepository service;
+    private ImageRepository service;
+    private ResourceLoader resourceLoader;
+
 
     @Override
     public void deleteById(Long id) {
@@ -25,6 +31,12 @@ public class ImageService implements ImageMethods {
             log.error("Error while deleting image: {}", exception.getMessage());
             throw new RuntimeException("Failed to delete image", exception);
         }
+    }
+    @Override
+    public String getImage(String imagePath) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath: " + imagePath);
+        byte[] imageBytes = resource.getInputStream().readAllBytes();
+        return Base64.getEncoder().encodeToString(imageBytes);
     }
 
     @Override
@@ -38,7 +50,6 @@ public class ImageService implements ImageMethods {
             throw new RuntimeException("Failed to retrieve image", e);
         }
     }
-
 
     @Override
     public Image saveImage(byte[] imageBytes) {
