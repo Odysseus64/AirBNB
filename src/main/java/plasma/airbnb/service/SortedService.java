@@ -10,11 +10,11 @@ import plasma.airbnb.reposiroty.ProductRepository;
 
 import java.util.List;
 
-@Slf4j
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class SortedService {
-    public final ProductRepository repository;
+    private final ProductRepository repository;
 
     public List<Product> sortByName(String title) {
         try {
@@ -93,5 +93,16 @@ public class SortedService {
         }
         return repository.findAll();
     }
+    public List<Product> types (Type type){
+        try {
+            if (type != null){
+                log.info("Get type: {}", type);
+                repository.sortByType(type);
+            }
+        }catch (Exception e){
+            log.error("Error: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return repository.findAll();
+    }
 }
-

@@ -8,6 +8,7 @@ import plasma.airbnb.enums.Region;
 import plasma.airbnb.enums.Type;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.service.ProductService;
+import plasma.airbnb.service.SortedService;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController("/api/product/")
 public class ProductController {
-    private final SortedService sortedService;
+    public final SortedService sorted_service;
     private final ProductService productService;
     @GetMapping("/get-all")
     public String getAll(){
@@ -45,25 +46,25 @@ public class ProductController {
 
     @GetMapping("/sort/name")
     public ResponseEntity<List<Product>> sortByName(String name) {
-        List<Product> sortedList = sortedService.sortByName(name);
+        List<Product> sortedList = sorted_service.sortByName(name);
         return ResponseEntity.ok().body(sortedList);
     }
 
     @GetMapping("/sort/price")
     public ResponseEntity<List<Product>> sortByPrice(int price) {
-        List<Product> sortedList = sortedService.sortByPrice(price);
+        List<Product> sortedList = sorted_service.sortByPrice(price);
         return ResponseEntity.ok().body(sortedList);
     }
 
     @GetMapping("/sort/region")
     public ResponseEntity<List<Product>> sortByRegion(Region region) {
-        List<Product> sortedList = sortedService.sortByRegion(region);
+        List<Product> sortedList = sorted_service.regions(region);
         return ResponseEntity.ok().body(sortedList);
     }
 
     @GetMapping("/sort/type")
     public ResponseEntity<List<Product>> sortByType(Type type) {
-        List<Product> sortedList = sortedService.sortByType(type);
+        List<Product> sortedList = sorted_service.types(type);
         return ResponseEntity.ok().body(sortedList);
     }
 }

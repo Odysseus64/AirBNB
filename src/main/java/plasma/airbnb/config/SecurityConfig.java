@@ -44,7 +44,8 @@ public class SecurityConfig {
                                 "/api/product/save",
                                 "/api/product/edit/**",
                                 "/api/product/delete/**").hasAnyRole("USER", "ADMIN")
-                        .antMatchers("api/v1/feedback/save/feedback",
+                        .antMatchers(
+                                "api/v1/feedback/save/feedback",
                                 "/api/v1/feedback/delete/FeedBack/**",
                                 "/api/v1/feedback/update/feedback/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest()
