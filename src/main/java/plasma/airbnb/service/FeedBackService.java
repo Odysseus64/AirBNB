@@ -80,21 +80,12 @@ public class FeedBackService implements FeedBackMethods {
 
     @Override
     public double calculateAverageRating(FeedBack feedback) {
-        List<Integer> ratings = Collections.singletonList(feedback.getRating()); // Получить список оценок (0-5) из объекта обратной связи
-
-        int sum = 0;
-        int count = ratings.size();
-
-        for (int rating : ratings) {
-            sum += rating;
-        }
-
-        if (count > 0) {
-            double averageRating = (double) sum / count;
-            return averageRating;
-        } else {
-            return 0.0; // Если нет оценок, вернуть 0.0
-        }
+        List<Integer> ratings = Collections.singletonList(feedback.getRating());
+        double averageRating = ratings.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
+        return averageRating;
     }
 
     @Override

@@ -2,6 +2,7 @@ package plasma.airbnb.reposiroty.methods;
 
 import plasma.airbnb.model.Image;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ImageMethods {
@@ -10,4 +11,5 @@ public interface ImageMethods {
     byte[] getImageBytes(Long imageId);
     List<Image> findAll();
     void deleteById(Long id);
+    String getImage(String imagePath) throws IOException;
 }

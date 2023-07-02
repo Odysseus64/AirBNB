@@ -11,7 +11,7 @@ import plasma.airbnb.service.FeedBackService;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RestController("api/v1/feedback")
+@RestController("/api/v1/feedback")
 public class FeedBackController {
 
     private final FeedBackService feedBackService;

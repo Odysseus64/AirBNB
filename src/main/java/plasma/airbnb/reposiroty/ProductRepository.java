@@ -1,5 +1,6 @@
 package plasma.airbnb.reposiroty;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,9 +23,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select s from Product s where s.region = :region")
     List<Product> findByRegion(@Param("region") Region region);
 
-    @Query("select s from Product s where s.type = :type")
-    List<Product> findByType(@Param("type") Type type);
-
     @Query("select s from Product s order by s.title desc ")
     List<Product> ratingTitle();
 
@@ -36,9 +34,23 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("select s from Product s order by s.type desc ")
     List<Product> ratingType();
+
     @Query("select  s from  Product  s order by s.title desc")
     List<Product> search(@RequestParam("name") String title,
                          @RequestParam("city") String city,
                          @RequestParam("region") Region region);
+
     List<Region> region(@RequestParam("region") Region region);
+
+    @Query("select s from Product s order by s.type desc")
+    List<Product> sortByType(@RequestParam("type") Type type);
+
+    @Query("SELECT s FROM Product s order by s.rating desc")
+    List<Product> sortRatingAndThree(Pageable pageable);
+
+    @Query("select s from Product s order by s.rating desc")
+    List<Product> sortRating();
+
+    @Query("select s from Product s order by s.date_now")
+    List<Product> sortDateLast();
 }
