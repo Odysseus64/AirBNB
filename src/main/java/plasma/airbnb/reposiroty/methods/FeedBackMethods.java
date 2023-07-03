@@ -10,6 +10,6 @@ public interface FeedBackMethods {
     FeedBack findById(Long id);
     FeedBack likeFeedBack(Long id);
     FeedBack dislikeFeedBack(Long id);
-     double calculateAverageRating(FeedBack feedback);
+    double calculateAverageRating(List<FeedBack> feedbackList);
     List<FeedBack> findAll();
 }

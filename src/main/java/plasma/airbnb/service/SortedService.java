@@ -8,6 +8,7 @@ import plasma.airbnb.enums.Type;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.reposiroty.ProductRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,91 +18,57 @@ public class SortedService {
     private final ProductRepository repository;
 
     public List<Product> sortByName(String title) {
-        try {
-            if (title != null){
-                log.info("Sort by name: {}", title);
-                repository.findByTitle(title);
-            }
-        }catch (Exception e) {
-            log.error("Error: {}", e.getMessage());
-            throw new RuntimeException(e);
+        if (title != null){
+            log.info("Sort by name: {}", title);
+            return repository.findByTitle(title);
         }
         return repository.findAll();
     }
 
     public List<Product> sortByPrice(int price) {
-        try {
-            if (price != 0) {
-                log.info("Sort by price: {}", price);
-                repository.ratingPrice();
-            }
-        }catch (Exception e){
-            log.error("Error: {}", e.getMessage());
-            throw new RuntimeException(e);
+        if (price != 0) {
+            log.info("Sort by price: {}", price);
+            return repository.ratingPrice();
         }
         return repository.findAll();
     }
 
-    public List<Product> sortByRatingType(Region region) {
-        try {
-            if (region != null){
-                log.info("Info: {}", region);
-                repository.findByRegion(region);
-            }
-        }catch (Exception e){
-            log.error("Error: {}", e.getMessage());
-            throw new RuntimeException(e);
+    public List<Product> sortByRegion(Region region) {
+        if (region != null){
+            log.info("Sort by region: {}", region);
+            return repository.findByRegion(region);
         }
         return repository.findAll();
     }
 
-    public List<Product> sortByRatingType(Type type) {
-        try {
-            if (type == null) {
-                log.info("Info: {}", type);
-                repository.ratingType();
-            }
-        }catch (Exception e){
-            log.error("Error: {}", e.getMessage());
-            throw new RuntimeException(e);
+    public List<Product> sortByType(Type type) {
+        if (type != null){
+            log.info("Sort by type: {}", type);
+            return repository.sortByType(type);
         }
         return repository.findAll();
     }
+
     public List<Product> search(String title, String city, Region region){
-        try{
-            if (title != null || city != null || region != null) {
-                log.info("Searching with: {}", title);
-                log.info("Searching with: {}", city);
-                log.info("Searching with: {}", region);
-                repository.search(title, city, region);
-            }
-        }catch (Exception e){
-            log.error("Error: ", e.getMessage());
-            throw new RuntimeException(e);
+        if(title == null && city == null && region == null) {
+            return Collections.emptyList();
+        }
+        log.info("Searching with title: {}, city: {}, region: {}", title, city, region);
+        return repository.search(title, city, region);
+    }
+
+    public List<Product> findByRegion(Region region){
+        if (region != null) {
+            log.info("Get region: {}", region);
+            return repository.findByRegion(region);
         }
         return repository.findAll();
     }
-    public List<Product> regions (Region region){
-        try{
-            if (region != null) {
-                log.info("Get region: {}", region);
-                repository.region(region);
-            }
-        }catch (Exception e){
-            log.error("Error: ", e.getMessage());
-            throw new RuntimeException(e);
-        }
-        return repository.findAll();
-    }
-    public List<Product> types (Type type){
-        try {
-            if (type != null){
-                log.info("Get type: {}", type);
-                repository.sortByType(type);
-            }
-        }catch (Exception e){
-            log.error("Error: {}", e.getMessage());
-            throw new RuntimeException(e);
+
+    public List<Product> findByType(Type type){
+        if (type != null){
+            log.info("Get type: {}", type);
+            return repository.sortByType(type);
         }
         return repository.findAll();
     }

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -20,6 +22,14 @@ public class Image {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "imageData")
+    private String imageData;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date uploadDate;
+
+    // Ранее я делал код таким чтоюы можно было описать несколько везей
+    // но как вижу мы не использовали некоторые ради оптимизации прощу вас удалить код
     @Column(name = "original_file_name")
     private String originalFileName;
 

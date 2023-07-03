@@ -1,5 +1,6 @@
 package plasma.airbnb.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import lombok.RequiredArgsConstructor;
@@ -9,18 +10,20 @@ import plasma.airbnb.model.Image;
 import plasma.airbnb.reposiroty.ImageRepository;
 import plasma.airbnb.reposiroty.methods.ImageMethods;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class ImageService implements ImageMethods {
+
+    @Autowired
     private ImageRepository service;
     private ResourceLoader resourceLoader;
-
 
     @Override
     public void deleteById(Long id) {
@@ -32,52 +35,39 @@ public class ImageService implements ImageMethods {
             throw new RuntimeException("Failed to delete image", exception);
         }
     }
+    // Получает по String
     @Override
     public String getImage(String imagePath) throws IOException {
-        Resource resource = resourceLoader.getResource("classpath: " + imagePath);
+        Resource resource = resourceLoader.getResource("classpath:" + imagePath);
+        if (!resource.exists()) {
+            throw new FileNotFoundException("Image not found: " + imagePath);
+        }
         byte[] imageBytes = resource.getInputStream().readAllBytes();
         return Base64.getEncoder().encodeToString(imageBytes);
     }
-
     @Override
-    public byte[] getImageBytes(Long imageId) {
+    public Image saveImage(byte[] imageData) {
         try {
-            Image image = service.findById(imageId).orElseThrow(() ->
-                    new RuntimeException("Image not found with id: " + imageId));
-            return image.getBytes();
-        } catch (Exception e) {
-            log.error("Error while retrieving image: {}", e.getMessage());
-            throw new RuntimeException("Failed to retrieve image", e);
-        }
-    }
-
-    @Override
-    public Image saveImage(byte[] imageBytes) {
-        try {
+            String base64Image = Base64.getEncoder().encodeToString(imageData);
             Image image = new Image();
-            image.setBytes(imageBytes);
+            image.setName("MyImage");
+            image.setUploadDate(new Date());
+            image.setImageData(base64Image);
+            log.info("Image saved: {}", image);
             return service.save(image);
         } catch (Exception e) {
-            log.error("Error while saving image: {}", e.getMessage());
-            throw new RuntimeException("Failed to save image", e);
+            log.error("Error uploading image: {}", e.getMessage());
+            throw new RuntimeException("Failed to upload image", e);
         }
     }
 
     @Override
     public Image updateImage(Long imageId, byte[] newImageBytes) {
-        try {
-            Optional<Image> optionalImage = service.findById(imageId);
-            if (optionalImage.isPresent()) {
-                Image image = optionalImage.get();
-                image.setBytes(newImageBytes);
-                return service.save(image);
-            } else {
-                throw new RuntimeException("Image not found with id: " + imageId);
-            }
-        } catch (Exception e) {
-            log.error("Error while updating image: {}", e.getMessage());
-            throw new RuntimeException("Failed to update image", e);
-        }
+        Image image = service.findById(imageId)
+                .orElseThrow(() -> new RuntimeException("Image not found with id: " + imageId));
+        String base64Image = Base64.getEncoder().encodeToString(newImageBytes);
+        image.setImageData(base64Image);
+        return service.save(image);
     }
     @Override
     public List<Image> findAll() {

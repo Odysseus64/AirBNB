@@ -58,13 +58,14 @@ public class ProductController {
 
     @GetMapping("/sort/region")
     public ResponseEntity<List<Product>> sortByRegion(Region region) {
-        List<Product> sortedList = sorted_service.regions(region);
+        List<Product> sortedList = sorted_service.sortByRegion(region);
         return ResponseEntity.ok().body(sortedList);
     }
 
     @GetMapping("/sort/type")
     public ResponseEntity<List<Product>> sortByType(Type type) {
-        List<Product> sortedList = sorted_service.types(type);
+        List<Product> sortedList = sorted_service.sortByType(type);
         return ResponseEntity.ok().body(sortedList);
     }
+    // Если ошибку выдает помните что в первую очередь нужно проверить этот контроллер потому что основа тут
 }
