@@ -39,8 +39,4 @@ public class FeedBack {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "feedBack")
     private List<Image> images = new ArrayList<>();
-
-
 }
-
-

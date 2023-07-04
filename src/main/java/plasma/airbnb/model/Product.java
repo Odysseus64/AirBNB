@@ -7,6 +7,7 @@ import plasma.airbnb.enums.Region;
 import plasma.airbnb.enums.Type;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,11 +45,12 @@ public class Product {
     private Region region;
 
     private Long previewImageId;
+    private int rating;
+    private final LocalDateTime date_now = LocalDateTime.now();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<FeedBack> feedBacks = new ArrayList<>();
-
 }
