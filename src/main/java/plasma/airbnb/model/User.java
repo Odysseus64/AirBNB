@@ -59,13 +59,13 @@ public class User {
 
     public void saveToFavorites(String item) {
         favorites.add(item);
-        log.info(item + " добавлен в избранное пользователя " +name + ".");
+        log.info(item + " добавлен в избранное пользователя " + name + ".");
     }
 
     public void deleteToFavorites(String item){
         if(favorites.contains(item)){
             favorites.remove(item);
-            log.info(item + " удален из избранного пользователя " +name + ".");
+            log.info(item + " удален из избранного пользователя " + name + ".");
         }else {
             log.info("не найден в избранном пользователя " + name + ".");
         }

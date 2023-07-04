@@ -39,49 +39,49 @@ public class Home {
 
     @GetMapping("/batken")
     public ResponseEntity<String> batken() {
-        sortedService.regions(Region.BATKEN);
+        sortedService.findByRegion(Region.BATKEN);
         return ResponseEntity.ok().body("okey  working");
     }
 
     @GetMapping("/osh")
     public ResponseEntity<String> osh() {
-        sortedService.regions(Region.OSH);
+        sortedService.findByRegion(Region.OSH);
         return ResponseEntity.ok().body("Wery ok");
     }
 
     @GetMapping("/jalal-abad")
     public ResponseEntity<String> jalalabad() {
-        sortedService.regions(Region.JALALABAD);
+        sortedService.findByRegion(Region.JALALABAD);
         return ResponseEntity.ok().body("Workung");
     }
 
     @GetMapping("/bishkek")
     public ResponseEntity<String> bishkek() {
-        sortedService.regions(Region.BISHKEK);
+        sortedService.findByRegion(Region.BISHKEK);
         return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/naryn")
     public ResponseEntity<String> naryn() {
-        sortedService.regions(Region.NARYN);
+        sortedService.findByRegion(Region.NARYN);
         return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/issyk-kol")
     public ResponseEntity<String> yssykkol() {
-        sortedService.regions(Region.ISSYKKUL);
+        sortedService.findByRegion(Region.ISSYKKUL);
         return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/talas")
     public ResponseEntity<String> talas() {
-        sortedService.regions(Region.TALAS);
+        sortedService.findByRegion(Region.TALAS);
         return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/chyi")
     public ResponseEntity<String> chyi() {
-        sortedService.regions(Region.CHUI);
+        sortedService.findByRegion(Region.CHUI);
         return ResponseEntity.ok().body("Working!");
     }
     @GetMapping("/search")
