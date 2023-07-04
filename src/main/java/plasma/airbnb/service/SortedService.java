@@ -13,6 +13,9 @@ import plasma.airbnb.reposiroty.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static plasma.airbnb.enums.Type.APARTMENT;
 
 @Service
 @Slf4j
@@ -73,8 +76,9 @@ public class SortedService {
         return repository.findAll();
     }
 
-    public List<Product> search(String title, String city, Region region) {
-        try {
+
+    public List<Product> search(String title, String city, Region region){
+        try{
             if (title != null || city != null || region != null) {
                 log.info("Searching with: {}", title);
                 log.info("Searching with: {}", city);
@@ -88,8 +92,10 @@ public class SortedService {
         return repository.findAll();
     }
 
-    public List<Product> regions(Region region) {
-        try {
+
+
+    public List<Product> regions (Region region){
+        try{
             if (region != null) {
                 log.info("Get region: {}", region);
                 repository.region(region);
@@ -101,7 +107,7 @@ public class SortedService {
         return repository.findAll();
     }
 
-    public List<Product> types(Type type) {
+    public List<Product> types (Type type){
         try {
             if (type != null) {
                 log.info("Get type: {}", type);
@@ -201,4 +207,38 @@ public class SortedService {
         }
         return productResponseList;
     }
+
+    public List<ProductResponse> ratingSortApartments() {
+        return repository.sortRating().stream()
+                .filter(product -> product.getType() == APARTMENT)
+                .map(product -> {
+                    ProductResponse productResponse = new ProductResponse();
+                    productResponse.setTitle(product.getTitle());
+                    productResponse.setRating(product.getRating());
+                    productResponse.setPrice(product.getPrice());
+                    try {
+                        productResponse.setDate_now(product.getDate_now());
+                    } catch (Exception e) {
+                        log.error("Error setting date: " + e.getMessage());
+                        productResponse.setDate_now(null);
+                    }
+
+                    try {
+                        productResponse.setImages(product.getImages());
+                    } catch (Exception e) {
+                        log.error("Error setting images: " + e.getMessage());
+                        productResponse.setImages(null);
+                    }
+
+                    try {
+                        productResponse.setRegion(product.getRegion());
+                    } catch (Exception e) {
+                        log.error("Error setting region: " + e.getMessage());
+                        productResponse.setRegion(null);
+                    }
+                    return productResponse;
+                })
+                .collect(Collectors.toList());
+    }
+
 }
