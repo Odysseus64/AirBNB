@@ -23,7 +23,6 @@ import static plasma.airbnb.enums.Type.APARTMENT;
 public class SortedService {
     private final ProductRepository repository;
 
-
     public List<Product> sortByName(String title) {
         try {
             if (title != null) {
@@ -76,7 +75,6 @@ public class SortedService {
         return repository.findAll();
     }
 
-
     public List<Product> search(String title, String city, Region region){
         try{
             if (title != null || city != null || region != null) {
@@ -91,8 +89,6 @@ public class SortedService {
         }
         return repository.findAll();
     }
-
-
 
     public List<Product> regions (Region region){
         try{
@@ -119,7 +115,7 @@ public class SortedService {
         }
         return repository.findAll();
     }
-
+    // Даниел код длинный и не понятный напиши лучше
     public List<ProductResponse> ratingThree() {
         List<ProductResponse> productResponses = new ArrayList<>();
         Pageable pageable = PageRequest.of(0, 3);

@@ -27,7 +27,7 @@ public class Home {
         List<Product> products = service.findAll();
         return ResponseEntity.ok().body(products);
     }
-
+    // Думаю тут понятно если нет то по ковыряйте корни и покажите этот коd CHAT - GPT
     @GetMapping("/home/getById/{id}")
     public ResponseEntity<Product> findById(@PathVariable("id") Long id) {
         Product product = service.findById(id);
@@ -37,6 +37,7 @@ public class Home {
             return ResponseEntity.ok().body(product);
     }
 
+    // Если методы нижу (8 штук) не работают попробуйте проверить Сервис SortedService
     @GetMapping("/batken")
     public ResponseEntity<String> batken() {
         sortedService.regions(Region.BATKEN);
@@ -84,6 +85,7 @@ public class Home {
         sortedService.regions(Region.CHUI);
         return ResponseEntity.ok().body("Working!");
     }
+    // Поиск тоже возможно не сработает так же можете проверить класс SortedService
     @GetMapping("/search")
     public ResponseEntity<String> search(@RequestParam("title")String title,
                                          @RequestParam("city") String city, @RequestParam("region") Region region){

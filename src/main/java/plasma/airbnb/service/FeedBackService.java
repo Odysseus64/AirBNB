@@ -7,7 +7,6 @@ import plasma.airbnb.model.FeedBack;
 import plasma.airbnb.reposiroty.FeedBackRepository;
 import plasma.airbnb.reposiroty.methods.FeedBackMethods;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -80,13 +79,13 @@ public class FeedBackService implements FeedBackMethods {
     }
 
     @Override
-    public double calculateAverageRating(FeedBack feedback) {
-        List<Integer> ratings = Collections.singletonList(feedback.getRating());
-        double averageRating = ratings.stream()
-                .mapToInt(Integer::intValue)
-                .average()
-                .orElse(0.0);
-        return averageRating;
+    public double calculateAverageRating(List<FeedBack> feedbackList) {
+        if (feedbackList.size() == 0)
+            return 0.0;
+        int sum = feedbackList.stream()
+                .mapToInt(feedback -> feedback.getRating())
+                .sum();
+        return (double) sum / feedbackList.size();
     }
 
     @Override

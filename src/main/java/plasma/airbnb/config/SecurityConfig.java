@@ -49,6 +49,10 @@ public class SecurityConfig {
                                 "/api/v1/feedback/delete/FeedBack/**",
                                 "/api/v1/feedback/update/feedback/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest()
+    /*
+        Когда тестируете не забудьте тестировать приложение на уязвимость IDOR (Можете по гуглить)
+        проблемы у нас с модерацие я хуй знаю почему мне это дали
+    */
                         .permitAll())
                 .sessionManagement()
                 .sessionCreationPolicy( SessionCreationPolicy.STATELESS );
