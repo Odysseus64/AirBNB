@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -20,6 +21,14 @@ public class Image {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "imageData")
+    private String imageData;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date uploadDate;
+
+    // Ранее я делал код таким чтоюы можно было описать несколько полей
+    // но как вижу мы не использовали некоторые, ради оптимизации прощу вас удалить лишний код
     @Column(name = "original_file_name")
     private String originalFileName;
 
@@ -31,7 +40,7 @@ public class Image {
 
     @Column(name = "is_preview_image")
     private boolean isPreviewImage;
-
+    // Думаю байт можно удалить проверьте не выйдет ли ошибка
     @Lob
     private byte[] bytes;
 

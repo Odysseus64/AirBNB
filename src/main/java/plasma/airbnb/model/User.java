@@ -39,7 +39,7 @@ public class User {
 
     private LocalDateTime dateOfCreate;
 
-    // It will be necessary to indicate in the diagram that I connected (User to FeedBack)
+    // Нужно будет указать на схеме, что я подключил (User to FeedBack)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<FeedBack> feedBacks = new ArrayList<>();
     /*
@@ -65,13 +65,13 @@ public class User {
 
     public void saveToFavorites(String item) {
         favorites.add(item);
-        log.info(item + " добавлен в избранное пользователя " +name + ".");
+        log.info(item + " добавлен в избранное пользователя " + name + ".");
     }
 
     public void deleteToFavorites(String item){
         if(favorites.contains(item)){
             favorites.remove(item);
-            log.info(item + " удален из избранного пользователя " +name + ".");
+            log.info(item + " удален из избранного пользователя " + name + ".");
         }else {
             log.info("не найден в избранном пользователя " + name + ".");
         }

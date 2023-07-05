@@ -3,6 +3,7 @@ package plasma.airbnb.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.reposiroty.ProductRepository;
 import plasma.airbnb.reposiroty.methods.ProductMethods;
@@ -18,15 +19,10 @@ public class ProductService implements ProductMethods {
 
     @Override
     public void deleteById(Long id) {
-        try {
-            log.info("Deleting product with id: {}", id);
-            repository.deleteById(id);
-        } catch (Exception exception) {
-            log.error("Error while deleting product: {}", exception.getMessage());
-            throw new RuntimeException("Failed to delete product", exception);
-        }
+        log.info("Deleting product with id: {}", id);
+        repository.deleteById(id);
     }
-
+    @Transactional
     @Override
     public void update(Long id, Product product) {
          try{
@@ -45,19 +41,15 @@ public class ProductService implements ProductMethods {
             log.info("Product finding with id: {}", id);
         }catch (Exception exception){
              log.error("Log: Error while updating product: {}", exception.getMessage());
-            throw new RuntimeException("Product not found with id: " + exception);
+            throw new RuntimeException("Product not found with id: " + id);
         }
     }
 
     @Override
     public Product findById(Long id) {
-        try {
-            log.info("Finding product with id: {}", id);
-            return repository.findById(id).orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
-        } catch (Exception exception) {
-            log.error("Error while finding product: {}", exception.getMessage());
-            throw new RuntimeException("Failed to find product", exception);
-        }
+        log.info("Finding product with id: {}", id);
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
     }
 
     @Override
@@ -75,5 +67,4 @@ public class ProductService implements ProductMethods {
     public List<Product> findAll() {
         return repository.findAll();
     }
-
 }

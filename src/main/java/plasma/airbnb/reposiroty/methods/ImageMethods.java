@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface ImageMethods {
     Image updateImage(Long imageId, byte[] newImageBytes);
-    Image saveImage(byte[] imageBytes);
-    byte[] getImageBytes(Long imageId);
+    Image saveImage(byte[] imageData);
     List<Image> findAll();
     void deleteById(Long id);
     String getImage(String imagePath) throws IOException;

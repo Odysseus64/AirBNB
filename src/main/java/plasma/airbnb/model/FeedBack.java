@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+// Не используйте Builder его синтаксис не понятный и не оптими
 @Builder
 @Table(name = "feed_back")
 @AllArgsConstructor
@@ -30,10 +31,6 @@ public class FeedBack {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Product product;
 
-     /*
-        Этого в планах не было если подумать придется делать так чтобы комент придналежал
-        пользователю
-     */
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private User user;
 

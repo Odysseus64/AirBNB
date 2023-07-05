@@ -10,9 +10,11 @@ import plasma.airbnb.service.FeedBackService;
 
 import java.util.List;
 
+@RequestMapping("/api/v1/feedback")
 @RequiredArgsConstructor
-@RestController("/api/v1/feedback")
+@RestController
 public class FeedBackController {
+    // Тут какая то каша с URLS
 
     private final FeedBackService feedBackService;
 
@@ -44,25 +46,25 @@ public class FeedBackController {
     @DeleteMapping("/delete/FeedBack/{id}")
     public ResponseEntity<FeedBack> deleteFeedBack(@PathVariable("id") Long id) {
         if (feedBackService.findById(id) == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            throw new RuntimeException("FeedBack not found with id: " + id);
         } else {
             feedBackService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-    @PostMapping("/{id}/like")
+    @PostMapping("/like/{id}")
     public FeedBack likeFeedback(@PathVariable("id") Long id) {
         return feedBackService.likeFeedBack(id);
     }
 
-    @PostMapping("/{id}/dislike")
+    @PostMapping("/dislike/{id}")
     public FeedBack dislikeFeedback(@PathVariable("id") Long id) {
         return feedBackService.dislikeFeedBack(id);
     }
-
-    @GetMapping("/{id}/average-rating")
+    //
+    @GetMapping("/average-rating/{id}")
     public double getAverageRating(@PathVariable("id") Long id) {
-        FeedBack feedBack = feedBackService.findById(id);
-        return feedBackService.calculateAverageRating(feedBack);
+        List<FeedBack> feedbackList = feedBackService.findAll();
+        return feedBackService.calculateAverageRating(feedbackList);
     }
 }
