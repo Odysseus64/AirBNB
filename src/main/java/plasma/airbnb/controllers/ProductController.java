@@ -88,4 +88,10 @@ public class ProductController {
     public List<ProductResponse> sortedDate() {
         return sorted_service.sortForDate();
     }
+
+    @GetMapping("/sorted-by-rating-apartments")
+    public List<ProductResponse> sortedByRatingApartments() {
+        return sorted_service.ratingSortApartments();
+    }
+
 }
