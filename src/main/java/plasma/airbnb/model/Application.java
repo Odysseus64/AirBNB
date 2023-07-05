@@ -20,15 +20,17 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long applicationId;
 
-    // An administrator who accepts or rejects a user's application
+    // The user who sent the application for acceptance of the house/apartment
     @ManyToOne
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "user_id")
     @ToString.Exclude
-    private User admin;
+    private User user;
     @Enumerated(EnumType.STRING)
     private DecisionStatus decisionStatus;
     private boolean accepted;
     private String message;
-    // The user who sent the application for acceptance of the house/apartment
-    private Long userId;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    @ToString.Exclude
+    private Product product;
 }

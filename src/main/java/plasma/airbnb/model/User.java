@@ -1,9 +1,9 @@
 package plasma.airbnb.model;
 
+
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import plasma.airbnb.enums.Role;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -43,9 +43,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<FeedBack> feedBacks = new ArrayList<>();
     /*
-    To send a "supposedly" application by the user to accept a house/apartment
+    To send a "supposedly" applications by the user to accept a house/apartment
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @ToString.Exclude
     private List<Application> applications;
 

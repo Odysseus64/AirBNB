@@ -1,10 +1,16 @@
 package plasma.airbnb.service;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import plasma.airbnb.dto.request.ProductRequest;
+import plasma.airbnb.dto.response.ApplicationResponse;
 import plasma.airbnb.enums.DecisionStatus;
 import plasma.airbnb.model.Application;
+import plasma.airbnb.model.Product;
 import plasma.airbnb.reposiroty.ApplicationRepository;
+import javax.transaction.Transactional;
+import java.util.NoSuchElementException;
 
 /**
  * Created by mouflon on 05.07.2023.
@@ -13,23 +19,52 @@ import plasma.airbnb.reposiroty.ApplicationRepository;
 @RequiredArgsConstructor
 public class ApplicationService {
 
-    private ApplicationRepository applicationRepository;
+    private final ApplicationRepository applicationRepository;
+    private final ProductService productService;
+    private final UserService userService;
+    private final ModelMapper modelMapper;
 
-    public String accept(Long applicationId) {
-        Application application = applicationRepository.findById(applicationId).orElseThrow();
-        application.setAccepted(true);
-        application.setDecisionStatus(DecisionStatus.ACCEPT);
+    @Transactional
+    public ApplicationResponse createApplication(Long userId, ProductRequest productRequest) {
+        Product product = modelMapper.map(productRequest, Product.class);
+        productService.save(product);
+        Application application = Application.builder()
+                .accepted(false)
+                .user(userService.findById(userId))
+                .build();
+        application.setProduct(product);
         applicationRepository.save(application);
-        return "Accepted!";
+        return modelMapper.map(application, ApplicationResponse.class);
     }
 
-    public String reject(Long applicationId, String message) {
+    @Transactional
+    public void accept(Long applicationId) {
         Application application = applicationRepository.findById(applicationId).orElseThrow();
+        Product product = application.getProduct();
+        application.setAccepted(true);
+        application.setDecisionStatus(DecisionStatus.ACCEPT);
+        productService.save(product);
+        applicationRepository.save(application);
+    }
+
+    @Transactional
+    public void reject(Long applicationId, String rejectionReason) {
+        Application application = applicationRepository.findById(applicationId).orElseThrow();
+        Product product = application.getProduct();
+        if (product != null) {
+            application.setProduct(null);
+            product.setApplication(null);
+            productService.deleteById(product.getId());
+        }
         application.setDecisionStatus(DecisionStatus.REJECT);
         application.setAccepted(false);
-        if (!application.isAccepted()) {
-            application.setMessage(message);
-        }
-        return "Rejected!";
+        application.setMessage(rejectionReason);
+//        applicationRepository.delete(application);
+        applicationRepository.save(application);
+    }
+
+    public ApplicationResponse getApplicationById(Long applicationId) {
+        return modelMapper.map(applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new NoSuchElementException("Application not found")), ApplicationResponse.class);
     }
 }

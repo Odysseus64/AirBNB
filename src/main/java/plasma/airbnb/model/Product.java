@@ -53,4 +53,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<FeedBack> feedBacks = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
+    private Application application;
 }
