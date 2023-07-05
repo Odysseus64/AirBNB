@@ -19,8 +19,8 @@ public class AirbnbApplication {
     }
 
     @PostConstruct
-    public void init (){
-        Product product1= new Product();
+    public void init() {
+        Product product1 = new Product();
         product1.setTitle("omat s");
         product1.setRating(5);
         product1.setType(Type.APARTMENT);
@@ -28,7 +28,7 @@ public class AirbnbApplication {
         product2.setTitle("ITKG");
         product2.setRating(2);
         product2.setType(Type.APARTMENT);
-        Product product3= new Product();
+        Product product3 = new Product();
         product3.setTitle("stroy");
         product3.setRating(5);
         product3.setType(Type.HOUSE);
@@ -36,4 +36,4 @@ public class AirbnbApplication {
         productRepository.save(product2);
         productRepository.save(product3);
     }
-    }
+}

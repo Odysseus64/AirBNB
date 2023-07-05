@@ -42,6 +42,12 @@ public class User {
     // It will be necessary to indicate in the diagram that I connected (User to FeedBack)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<FeedBack> feedBacks = new ArrayList<>();
+    /*
+    To send a "supposedly" application by the user to accept a house/apartment
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin")
+    @ToString.Exclude
+    private List<Application> applications;
 
     public User(String name,
                 String email,
