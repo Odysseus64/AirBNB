@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ProductService implements ProductMethods {
+
     private final ProductRepository repository;
 
     @Override
@@ -66,4 +67,5 @@ public class ProductService implements ProductMethods {
     public List<Product> findAll() {
         return repository.findAll();
     }
+
 }

@@ -13,6 +13,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class FeedBackService implements FeedBackMethods {
+
     private final FeedBackRepository feedBackRepository;
 
     @Override
