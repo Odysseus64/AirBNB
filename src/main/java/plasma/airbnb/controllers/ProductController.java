@@ -93,4 +93,5 @@ public class ProductController {
     public List<ProductResponse> sortedByRatingApartments() {
         return sorted_service.ratingSortApartments();
     }
+
 }
