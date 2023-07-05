@@ -14,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class FeedBackController {
+    // Тут какая то каша с URLS
 
     private final FeedBackService feedBackService;
 
@@ -51,18 +52,17 @@ public class FeedBackController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-
-    @PostMapping("/{id}/like")
+    @PostMapping("/like/{id}")
     public FeedBack likeFeedback(@PathVariable("id") Long id) {
         return feedBackService.likeFeedBack(id);
     }
 
-    @PostMapping("/{id}/dislike")
+    @PostMapping("/dislike/{id}")
     public FeedBack dislikeFeedback(@PathVariable("id") Long id) {
         return feedBackService.dislikeFeedBack(id);
     }
-
-    @GetMapping("/{id}/average-rating")
+    //
+    @GetMapping("/average-rating/{id}")
     public double getAverageRating(@PathVariable("id") Long id) {
         List<FeedBack> feedbackList = feedBackService.findAll();
         return feedBackService.calculateAverageRating(feedbackList);

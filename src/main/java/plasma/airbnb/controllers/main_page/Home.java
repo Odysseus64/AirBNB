@@ -27,7 +27,7 @@ public class Home {
         List<Product> products = service.findAll();
         return ResponseEntity.ok().body(products);
     }
-
+    // Думаю тут понятно если нет то по ковыряйте корни и покажите этот коd CHAT - GPT
     @GetMapping("/home/getById/{id}")
     public ResponseEntity<Product> findById(@PathVariable("id") Long id) {
         Product product = service.findById(id);
@@ -37,53 +37,55 @@ public class Home {
             return ResponseEntity.ok().body(product);
     }
 
+    // Если методы нижу (8 штук) не работают попробуйте проверить Сервис SortedService
     @GetMapping("/batken")
     public ResponseEntity<String> batken() {
-        sortedService.findByRegion(Region.BATKEN);
+        sortedService.regions(Region.BATKEN);
         return ResponseEntity.ok().body("okey  working");
     }
 
     @GetMapping("/osh")
     public ResponseEntity<String> osh() {
-        sortedService.findByRegion(Region.OSH);
+        sortedService.regions(Region.OSH);
         return ResponseEntity.ok().body("Wery ok");
     }
 
     @GetMapping("/jalal-abad")
     public ResponseEntity<String> jalalabad() {
-        sortedService.findByRegion(Region.JALALABAD);
+        sortedService.regions(Region.JALALABAD);
         return ResponseEntity.ok().body("Workung");
     }
 
     @GetMapping("/bishkek")
     public ResponseEntity<String> bishkek() {
-        sortedService.findByRegion(Region.BISHKEK);
+        sortedService.regions(Region.BISHKEK);
         return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/naryn")
     public ResponseEntity<String> naryn() {
-        sortedService.findByRegion(Region.NARYN);
+        sortedService.regions(Region.NARYN);
         return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/issyk-kol")
     public ResponseEntity<String> yssykkol() {
-        sortedService.findByRegion(Region.ISSYKKUL);
+        sortedService.regions(Region.ISSYKKUL);
         return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/talas")
     public ResponseEntity<String> talas() {
-        sortedService.findByRegion(Region.TALAS);
+        sortedService.regions(Region.TALAS);
         return ResponseEntity.ok().body("Working!");
     }
 
     @GetMapping("/chyi")
     public ResponseEntity<String> chyi() {
-        sortedService.findByRegion(Region.CHUI);
+        sortedService.regions(Region.CHUI);
         return ResponseEntity.ok().body("Working!");
     }
+    // Поиск тоже возможно не сработает так же можете проверить класс SortedService
     @GetMapping("/search")
     public ResponseEntity<String> search(@RequestParam("title")String title,
                                          @RequestParam("city") String city, @RequestParam("region") Region region){

@@ -46,7 +46,7 @@ public class Product {
 
     private Long previewImageId;
     private int rating;
-    private final LocalDateTime date_now = LocalDateTime.now();
+    private LocalDateTime date_now = LocalDateTime.now();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> images = new ArrayList<>();

@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ImageService implements ImageMethods {
-
+    // На что он жалуется? нужно исправить.
     @Autowired
     private ImageRepository service;
     private ResourceLoader resourceLoader;

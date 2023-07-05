@@ -67,5 +67,4 @@ public class ProductService implements ProductMethods {
     public List<Product> findAll() {
         return repository.findAll();
     }
-
 }

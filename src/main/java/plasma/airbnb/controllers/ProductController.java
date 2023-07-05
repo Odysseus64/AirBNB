@@ -19,10 +19,9 @@ import java.util.List;
 public class ProductController {
     public final SortedService sorted_service;
     private final ProductService productService;
-
     @GetMapping("/get-all")
     public String getAll() {
-        productService.findAll();
+        List<Product> find = productService.findAll();
         return "successfully getting";
     }
 
@@ -93,5 +92,4 @@ public class ProductController {
     public List<ProductResponse> sortedByRatingApartments() {
         return sorted_service.ratingSortApartments();
     }
-
 }

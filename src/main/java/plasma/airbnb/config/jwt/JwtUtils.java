@@ -34,5 +34,4 @@ public class JwtUtils {
         DecodedJWT verify = jwtVerifier.verify( token );
         return verify.getClaim( "username" ).asString();
     }
-
 }

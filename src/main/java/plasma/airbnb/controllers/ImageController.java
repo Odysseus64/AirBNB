@@ -21,8 +21,8 @@ public class ImageController {
             byte[] imageData = file.getBytes();
             String base64Image = Base64.getEncoder().encodeToString(imageData);
             // Сохраняем строку Base64 в базу данных или куда-то еще
-            // ...
-
+            // Картинку мы перевели в String формат теперь ее нужно сохранить
+            // но (save) метод жалуется что его нельзя сохранить при тестах исправляем
             return "Image uploaded successfully!";
         } catch (IOException e) {
             return "Error uploading image: " + e.getMessage();

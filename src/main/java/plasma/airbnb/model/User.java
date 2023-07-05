@@ -39,7 +39,7 @@ public class User {
 
     private LocalDateTime dateOfCreate;
 
-    // It will be necessary to indicate in the diagram that I connected (User to FeedBack)
+    // Нужно будет указать на схеме, что я подключил (User to FeedBack)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<FeedBack> feedBacks = new ArrayList<>();
 
