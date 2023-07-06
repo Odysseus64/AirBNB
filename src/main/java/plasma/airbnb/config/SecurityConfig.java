@@ -59,6 +59,19 @@ public class SecurityConfig {
         http.addFilterBefore(tokenVerifierFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+    // Также это написал он bekbolsun
+    @Bean
+    public SecurityFilterChain chain(HttpSecurity http) throws Exception {
+        http
+                .cors()
+                .disable()
+                .authorizeHttpRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .oauth2Login();
+        return http.build();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
