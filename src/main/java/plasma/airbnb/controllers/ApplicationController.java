@@ -11,7 +11,6 @@ import plasma.airbnb.dto.request.RejectionReasonRequest;
 import plasma.airbnb.dto.response.ApplicationResponse;
 import plasma.airbnb.reposiroty.UserRepository;
 import plasma.airbnb.service.ApplicationService;
-import javax.annotation.security.PermitAll;
 
 /**
  * Created by mouflon on 06.07.2023.

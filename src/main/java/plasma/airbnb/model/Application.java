@@ -25,8 +25,6 @@ public class Application {
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
-    @Enumerated(EnumType.STRING)
-    private DecisionStatus decisionStatus;
     private boolean accepted;
     private String message;
     @OneToOne(fetch = FetchType.LAZY)

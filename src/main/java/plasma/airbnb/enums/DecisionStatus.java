@@ -5,6 +5,7 @@ package plasma.airbnb.enums;
  */
 public enum DecisionStatus {
 
-    ACCEPT,
-    REJECT
+    CONSIDERATION,
+    ACCEPTED,
+    REJECTED
 }

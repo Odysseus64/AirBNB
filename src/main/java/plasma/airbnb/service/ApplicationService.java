@@ -29,12 +29,13 @@ public class ApplicationService {
     @Transactional
     public ApplicationResponse createApplication(Long userId, ProductRequest productRequest) {
         Product product = modelMapper.map(productRequest, Product.class);
+        product.setDecisionStatus(DecisionStatus.CONSIDERATION);
         productService.save(product);
         Application application = Application.builder()
                 .accepted(false)
+                .product(product)
                 .user(userService.findById(userId))
                 .build();
-        application.setProduct(product);
         applicationRepository.save(application);
         log.info("Application created: {}", application);
         return modelMapper.map(application, ApplicationResponse.class);
@@ -45,7 +46,8 @@ public class ApplicationService {
         Application application = applicationRepository.findById(applicationId).orElseThrow();
         Product product = application.getProduct();
         application.setAccepted(true);
-        application.setDecisionStatus(DecisionStatus.ACCEPT);
+        application.setMessage(null);
+        product.setDecisionStatus(DecisionStatus.ACCEPTED);
         productService.save(product);
         applicationRepository.save(application);
         log.info("Application accepted: {}", application);
@@ -56,11 +58,9 @@ public class ApplicationService {
         Application application = applicationRepository.findById(applicationId).orElseThrow();
         Product product = application.getProduct();
         if (product != null) {
-            application.setProduct(null);
-            product.setApplication(null);
-            productService.deleteById(product.getId());
+            product.setDecisionStatus(DecisionStatus.REJECTED);
+            productService.save(product);
         }
-        application.setDecisionStatus(DecisionStatus.REJECT);
         application.setAccepted(false);
         application.setMessage(rejectionReason);
         applicationRepository.save(application);
