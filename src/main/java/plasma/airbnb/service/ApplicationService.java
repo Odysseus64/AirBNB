@@ -1,6 +1,7 @@
 package plasma.airbnb.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import plasma.airbnb.dto.request.ProductRequest;
@@ -15,6 +16,7 @@ import java.util.NoSuchElementException;
 /**
  * Created by mouflon on 05.07.2023.
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ApplicationService {
@@ -34,6 +36,7 @@ public class ApplicationService {
                 .build();
         application.setProduct(product);
         applicationRepository.save(application);
+        log.info("Application created: {}", application);
         return modelMapper.map(application, ApplicationResponse.class);
     }
 
@@ -45,6 +48,7 @@ public class ApplicationService {
         application.setDecisionStatus(DecisionStatus.ACCEPT);
         productService.save(product);
         applicationRepository.save(application);
+        log.info("Application accepted: {}", application);
     }
 
     @Transactional
@@ -59,12 +63,14 @@ public class ApplicationService {
         application.setDecisionStatus(DecisionStatus.REJECT);
         application.setAccepted(false);
         application.setMessage(rejectionReason);
-//        applicationRepository.delete(application);
         applicationRepository.save(application);
+        log.info("Application rejected: {}", application);
     }
 
     public ApplicationResponse getApplicationById(Long applicationId) {
-        return modelMapper.map(applicationRepository.findById(applicationId)
-                .orElseThrow(() -> new NoSuchElementException("Application not found")), ApplicationResponse.class);
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new NoSuchElementException("Application not found"));
+        log.info("Application retrieved: {}", application);
+        return modelMapper.map(application, ApplicationResponse.class);
     }
 }
