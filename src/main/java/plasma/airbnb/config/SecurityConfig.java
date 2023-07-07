@@ -60,7 +60,7 @@ public class SecurityConfig {
         return http.build();
     }
     // Также это написал он bekbolsun
-    @Bean
+    /*@Bean
     public SecurityFilterChain chain(HttpSecurity http) throws Exception {
         http
                 .cors()
@@ -71,7 +71,7 @@ public class SecurityConfig {
                 .and()
                 .oauth2Login();
         return http.build();
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -69,6 +69,10 @@ public class ImageService implements ImageMethods {
         image.setImageData(base64Image);
         return service.save(image);
     }
+    public void findById(Long id){
+        service.findById(id);
+        log.info("ID: {}", id);
+    }
     @Override
     public List<Image> findAll() {
         return service.findAll();
