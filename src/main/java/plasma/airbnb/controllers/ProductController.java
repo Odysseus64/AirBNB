@@ -20,9 +20,8 @@ public class ProductController {
     public final SortedService sorted_service;
     private final ProductService productService;
     @GetMapping("/get-all")
-    public String getAll() {
-        List<Product> find = productService.findAll();
-        return "successfully getting";
+    public List<Product> getAll() {
+        return productService.findAll();
     }
 
     @GetMapping("/get-by-id/{id}")

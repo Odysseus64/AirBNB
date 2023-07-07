@@ -61,7 +61,7 @@ public class FeedBackController {
     public FeedBack dislikeFeedback(@PathVariable("id") Long id) {
         return feedBackService.dislikeFeedBack(id);
     }
-    //
+
     @GetMapping("/average-rating/{id}")
     public double getAverageRating(@PathVariable("id") Long id) {
         List<FeedBack> feedbackList = feedBackService.findAll();
