@@ -236,5 +236,4 @@ public class SortedService {
                 })
                 .collect(Collectors.toList());
     }
-
 }
