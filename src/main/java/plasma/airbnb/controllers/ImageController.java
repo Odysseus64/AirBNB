@@ -17,7 +17,7 @@ public class ImageController {
     @PostMapping("/upload-image")
     public String handleImageUpload(@RequestParam("image") MultipartFile file) {
         try {
-            // Выйдет ошибкy потому что картинку мы дает в String а как в byte я хз
+            // Выйдет ошибкy   потому что картинку мы дает в String а как в byte я хз
             byte[] imageData = file.getBytes();
             imageService.saveImage(imageData);
             return "Image uploaded successfully!";
