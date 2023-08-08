@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Builder
 @Table(name = "feed_back")
 @AllArgsConstructor
 @NoArgsConstructor

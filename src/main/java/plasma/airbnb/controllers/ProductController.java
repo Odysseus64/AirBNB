@@ -1,5 +1,4 @@
 package plasma.airbnb.controllers;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import plasma.airbnb.enums.Type;
 import plasma.airbnb.model.Product;
 import plasma.airbnb.service.ProductService;
 import plasma.airbnb.service.SortedService;
-
 import java.util.List;
 
 @Controller

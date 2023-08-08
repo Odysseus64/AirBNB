@@ -36,4 +36,5 @@ public class AirbnbApplication {
         productRepository.save(product2);
         productRepository.save(product3);
     }
+
     }

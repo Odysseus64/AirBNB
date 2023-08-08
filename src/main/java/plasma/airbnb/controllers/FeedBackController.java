@@ -65,4 +65,5 @@ public class FeedBackController {
         FeedBack feedBack = feedBackService.findById(id);
         return feedBackService.calculateAverageRating(feedBack);
     }
+
 }
