@@ -26,6 +26,7 @@ public class AirbnbApplication {
         product1.setRating(5);
         product1.setType(Type.APARTMENT);
         product1.setRegion(Region.BATKEN);
+        product1.setDescription("Стройка много чего другого и хуйня полное");
         Product product2 = new Product();
         product2.setTitle("ITKG");
         product2.setRating(2);
@@ -34,6 +35,8 @@ public class AirbnbApplication {
         Product product3= new Product();
         product3.setTitle("stroy");
         product3.setRating(5);
+        product3.setType(Type.APARTMENT);
+        product3.setDescription("This is a product which 3 description");
         product1.setRegion(Region.BISHKEK);
         product3.setType(Type.HOUSE);
         productRepository.save(product1);
