@@ -119,8 +119,17 @@
 			<artifactId>org.aml.apimodel</artifactId>
 			<version>0.11</version>
 		</dependency>
-
-	</dependencies>
+        <dependency>
+            <groupId>net.eunjae.android.modelmapper</groupId>
+            <artifactId>ModelMapper</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.4.4</version>
+		</dependency>
+    </dependencies>
 	<build>
 		<plugins>
 			<plugin>

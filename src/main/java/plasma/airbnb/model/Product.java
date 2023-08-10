@@ -3,6 +3,7 @@ package plasma.airbnb.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import plasma.airbnb.enums.DecisionStatus;
 import plasma.airbnb.enums.Region;
 import plasma.airbnb.enums.Type;
 
@@ -47,6 +48,8 @@ public class Product {
     private Long previewImageId;
     private int rating;
     private final LocalDateTime date_now = LocalDateTime.now();
+
+    private DecisionStatus decisionStatus;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
