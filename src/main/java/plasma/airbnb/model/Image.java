@@ -42,7 +42,7 @@ public class Image {
     private boolean isPreviewImage;
     // Думаю байт можно удалить проверьте не выйдет ли ошибка
     @Lob
-    private byte[] bytes;
+    private String str;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Product product;
