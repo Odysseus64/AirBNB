@@ -38,17 +38,12 @@ public class ImageService implements ImageMethods {
     // Получает по String
     @Override
     public String getImage(String imagePath) throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:" + imagePath);
-        if (!resource.exists()) {
-            throw new FileNotFoundException("Image not found: " + imagePath);
-        }
-        byte[] imageBytes = resource.getInputStream().readAllBytes();
+
         return Base64.getEncoder().encodeToString(imageBytes);
     }
     @Override
-    public Image saveImage(byte[] imageData) {
+    public Image saveImage(String base64Image) {
         try {
-            String base64Image = Base64.getEncoder().encodeToString(imageData);
             Image image = new Image();
             image.setName("MyImage");
             image.setUploadDate(new Date());
@@ -62,10 +57,9 @@ public class ImageService implements ImageMethods {
     }
 
     @Override
-    public Image updateImage(Long imageId, byte[] newImageBytes) {
+    public Image updateImage(Long imageId, String base64Image) {
         Image image = service.findById(imageId)
                 .orElseThrow(() -> new RuntimeException("Image not found with id: " + imageId));
-        String base64Image = Base64.getEncoder().encodeToString(newImageBytes);
         image.setImageData(base64Image);
         return service.save(image);
     }
